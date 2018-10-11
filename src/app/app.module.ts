@@ -6,19 +6,20 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MyNavComponent } from './my-nav/my-nav.component';
+import { MyNavComponent } from './components/my-nav/my-nav.component';
 import { LayoutModule } from '@angular/cdk/layout';
-import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule, MatCardModule, MatMenuModule } from '@angular/material';
+import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule, MatCardModule, MatMenuModule, MatGridListModule } from '@angular/material';
 import { LoginComponent } from './components/login/login.component';
 import { SignupComponent } from './components/signup/signup.component';
-import { MovieComponent } from './components/movie/movie.component';
+import { MovieListComponent } from './components/movie/movie-list.component';
 import { AuthGuardService } from './guards/auth-guard.service';
 import { NoRightsComponent } from './components/login/no-rights.component';
+import { MovieThumbnailComponent } from './components/movie/movie-thumbnail.component';
 
 const appRoutes: Routes = [
   {
     path: 'movies',
-    component: MovieComponent,
+    component: MovieListComponent,
     data: { title: 'Movie List' },
     canActivate: [AuthGuardService]
   },
@@ -52,8 +53,9 @@ const appRoutes: Routes = [
     MyNavComponent,
     LoginComponent,
     SignupComponent,
-    MovieComponent,
-    NoRightsComponent
+    MovieListComponent,
+    NoRightsComponent,
+    MovieThumbnailComponent
   ],
   imports: [
     BrowserModule,
@@ -69,7 +71,8 @@ const appRoutes: Routes = [
     MatIconModule,
     MatListModule,
     MatCardModule,
-    MatMenuModule
+    MatMenuModule,
+    MatGridListModule
   ],
   providers: [],
   bootstrap: [AppComponent]
