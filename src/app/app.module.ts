@@ -15,10 +15,12 @@ import { MovieListComponent } from './components/movie/movie-list.component';
 import { AuthGuardService } from './guards/auth-guard.service';
 import { NoRightsComponent } from './components/login/no-rights.component';
 import { MovieThumbnailComponent } from './components/movie/movie-thumbnail.component';
+import { MovieResolverService } from './components/movie/movie-resolver.service';
 
 const appRoutes: Routes = [
   {
     path: 'movies',
+    resolve: { movies: MovieResolverService },
     component: MovieListComponent,
     data: { title: 'Movie List' },
     canActivate: [AuthGuardService]
@@ -74,7 +76,7 @@ const appRoutes: Routes = [
     MatMenuModule,
     MatGridListModule
   ],
-  providers: [],
+  providers: [MovieResolverService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

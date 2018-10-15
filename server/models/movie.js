@@ -17,7 +17,12 @@ var MovieSchema = new Schema({
     posterLocation: {
         type: String,
         required: true
+    },
+    synopsis: {
+      type: String,
+      required: false
     }
+
 });
 
 module.exports = mongoose.model('Movie', MovieSchema);

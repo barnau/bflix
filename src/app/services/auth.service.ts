@@ -15,20 +15,19 @@ export class AuthService {
 
   options: any = {'headers': new HttpHeaders({'Content-Type': 'application/json'})}
   apiBase: string = CommonValues.devApi;
-  currentUser: User = new User();
+  currentUser: User = JSON.parse(localStorage.getItem(CommonValues.localStorageLoggedInUser)) || new User();
   constructor(private http: HttpClient, private router: Router) {
    }
 
   login(loginData: LoginData) {
-    debugger;
     return this.http.post(this.apiBase + '/signin', loginData)
     .pipe(tap((data: LoginResponse) => {
-      debugger;
       console.log(data);
       this.currentUser.token = data.token;
       this.currentUser.userName = loginData.username;
       this.currentUser.fullAccess = data.fullAccess;
       localStorage.setItem('jwtToken', data.token);
+      localStorage.setItem(CommonValues.localStorageLoggedInUser, JSON.stringify(this.currentUser))
     }))
     .pipe(catchError(err => of(false)))
   }
@@ -49,6 +48,7 @@ export class AuthService {
     this.currentUser.fullAccess = false;
     this.currentUser.token = undefined;
     this.currentUser.userName = undefined;
+    localStorage.setItem(CommonValues.localStorageLoggedInUser, null);
     this.router.navigate(['login']);
   }
 }

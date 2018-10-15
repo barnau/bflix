@@ -76,18 +76,24 @@ router.post('/signup', function(req, res) {
         res.json({success: true, msg: 'Successful created new movie.'});
       });
     } else {
+      console.log('no token attached to request')
       return res.status(403).send({success: false, msg: 'Unauthorized.'});
     }
   });
 
   router.get('/movie', passport.authenticate('jwt', { session: false}), function(req, res) {
+    console.log(req)
+    console.log(req.headers)
     var token = getToken(req.headers);
     if (token) {
       Movie.find(function (err, movie) {
         if (err) return next(err);
+        console.log('movies found')
+        console.log(movie);
         res.json(movie);
       });
     } else {
+      console.log('no token attached to request')
       return res.status(403).send({success: false, msg: 'Unauthorized.'});
     }
   });

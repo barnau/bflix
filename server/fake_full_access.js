@@ -1,4 +1,5 @@
 var User = require('./models/user');
+var Movie = require('./models/movie');
 
 var mongoose = require('./config/connection');
 
@@ -8,13 +9,13 @@ var mongoose = require('./config/connection');
       fullAccess: true
   });
 
-  admin.save((err) => {
-    if(err) {
-      console.log(err);
-    } else {
-      console.log('user saved')
-    }
-  })
+  // admin.save((err) => {
+  //   if(err) {
+  //     console.log(err);
+  //   } else {
+  //     console.log('user saved')
+  //   }
+  // })
 
 
   // User.findOne({username: adminUser.username}, (err, user) => {
@@ -67,4 +68,51 @@ var mongoose = require('./config/connection');
   //       })
   // });
 
+
+  // MOVIES
+
+//   var MovieSchema = new Schema({
+//     location: {
+//         type: String,
+//         required: true
+//     },
+//     title: {
+//         type: String,
+//         required: true
+//     },
+//     director: {
+//         type: String,
+//         required: true
+//     },
+//     posterLocation: {
+//         type: String,
+//         required: true
+//     }
+// });
+
+
+// ADD A MOVIE
+  // var newMovie = Movie({
+  //   location: "tbd",
+  //   title: "Insidious",
+  //   director: "James Wan",
+  //   posterLocation: "https://image.ibb.co/fQv3PU/insidious.jpg",
+  //   synopsis: "Ghosts man! Creepy ghosts! Oh yeah, and Demons man! Dude has a red face. It's creepy!"
+  // })
+
+  // newMovie.save((err) => {
+  //   if(err) {
+  //     console.log('there was an error saving this movie.')
+  //   } else {
+  //     console.log('Added ' + newMovie.title)
+  //   }
+  // })
+
+  // GET ALL MOVIES
+
+  Movie.find(function (err, movie) {
+    if (err) Console.log(err)
+    console.log('movies found')
+    console.log(movie);
+  });
 
