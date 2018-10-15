@@ -92,27 +92,27 @@ var mongoose = require('./config/connection');
 
 
 // ADD A MOVIE
-  // var newMovie = Movie({
-  //   location: "tbd",
-  //   title: "Insidious",
-  //   director: "James Wan",
-  //   posterLocation: "https://image.ibb.co/fQv3PU/insidious.jpg",
-  //   synopsis: "Ghosts man! Creepy ghosts! Oh yeah, and Demons man! Dude has a red face. It's creepy!"
-  // })
+  var newMovie = Movie({
+    location: "tbd",
+    title: "The Conjuring",
+    director: "James Wan",
+    posterLocation: "https://image.ibb.co/jr5frL/theconjuring.jpg",
+    synopsis: "Ghosts man! But posessions too! And jump scares! Gets you so good!"
+  })
 
-  // newMovie.save((err) => {
-  //   if(err) {
-  //     console.log('there was an error saving this movie.')
-  //   } else {
-  //     console.log('Added ' + newMovie.title)
-  //   }
-  // })
+  newMovie.save((err) => {
+    if(err) {
+      console.log('there was an error saving this movie.')
+    } else {
+      console.log('Added ' + newMovie.title)
+    }
+  })
 
   // GET ALL MOVIES
 
-  Movie.find(function (err, movie) {
-    if (err) Console.log(err)
-    console.log('movies found')
-    console.log(movie);
-  });
+  // Movie.find(function (err, movie) {
+  //   if (err) Console.log(err)
+  //   console.log('movies found')
+  //   console.log(movie);
+  // });
 

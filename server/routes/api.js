@@ -98,6 +98,32 @@ router.post('/signup', function(req, res) {
     }
   });
 
+  router.use('/player/:movieId',(req, res, next) => {
+    Movie.findById(req.params.movieId, (err, movie) => {
+      if (err) {
+        res.status(500).send(err);
+      } else if (movie) {
+        req.movie = movie;
+        next();
+      } else {
+        res.status(404).send('moive not found');
+      }
+    })
+  })
+
+  // add video id parameter and implement socket
+  router.get('/player/:movieId', passport.authenticate('jwt', { session: false}), function(req, res) {
+    console.log(req)
+    console.log(req.headers)
+    var token = getToken(req.headers);
+    if (token) {
+
+    } else {
+      console.log('no token attached to request')
+      return res.status(403).send({success: false, msg: 'Unauthorized.'});
+    }
+  });
+
   getToken = function (headers) {
     if (headers && headers.authorization) {
       var parted = headers.authorization.split(' ');
