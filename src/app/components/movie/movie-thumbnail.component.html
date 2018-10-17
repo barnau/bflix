@@ -1,0 +1,13 @@
+<mat-card class="movie-card">
+    <mat-card-header>
+      <mat-card-title >{{movie.title}}</mat-card-title>
+      <mat-card-subtitle><small>Director: <i>{{movie.director}}</i></small></mat-card-subtitle><div class="fill-remaining-space"></div>
+      <button mat-button class="button-border"><mat-icon>play_circle_filled</mat-icon></button>
+    </mat-card-header>
+    <img mat-card-image class="movie-poster" [src]="movie.posterLocation" alt="Insidious Movie Poster">
+    <mat-card-content>
+      <p class="synopsis">
+        {{movie.synopsis}}
+      </p>
+    </mat-card-content>
+  </mat-card>
