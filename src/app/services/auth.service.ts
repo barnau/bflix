@@ -51,4 +51,8 @@ export class AuthService {
     localStorage.setItem(CommonValues.localStorageLoggedInUser, null);
     this.router.navigate(['login']);
   }
+
+  getHttpOptions() {
+    return { headers: new HttpHeaders({ 'Authorization': localStorage.getItem('jwtToken') })};
+  }
 }

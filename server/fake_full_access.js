@@ -92,12 +92,20 @@ var mongoose = require('./config/connection');
 
 
 // ADD A MOVIE
+  // var newMovie = Movie({
+  //   location: "tbd",
+  //   title: "The Conjuring",
+  //   director: "James Wan",
+  //   posterLocation: "https://image.ibb.co/jr5frL/theconjuring.jpg",
+  //   synopsis: "Ghosts man! But posessions too! And jump scares! Gets you so good!"
+  // })
+
   var newMovie = Movie({
     location: "tbd",
-    title: "The Conjuring",
+    title: "Insidious",
     director: "James Wan",
-    posterLocation: "https://image.ibb.co/jr5frL/theconjuring.jpg",
-    synopsis: "Ghosts man! But posessions too! And jump scares! Gets you so good!"
+    posterLocation: "https://image.ibb.co/fQv3PU/insidious.jpg",
+    synopsis: "This movie also is about ghosts"
   })
 
   newMovie.save((err) => {

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { CommonValues } from '../common/commonValues';
 import { User } from '../models/user';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,23 +14,28 @@ export class MovieService {
   private currentUser: User = JSON.parse(localStorage.getItem(CommonValues.localStorageLoggedInUser)) || new User();
 
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private auth: AuthService) { }
+
+  getHttpOptions
 
   getMovies() {
-    let httpOptions = {
-      headers: new HttpHeaders({ 'Authorization': localStorage.getItem('jwtToken') })
-    };
-
-    // this.http.get('/api/movie', httpOptions).subscribe(data => {
-    //   this.movies = data;
-    //   console.log(this.movies);
-    // }, err => {
-    //   if(err.status === 401) {
-    //     this.router.navigate(['login']);
-    //   }
-    // })
-    console.log(httpOptions);
+    let httpOptions = this.auth.getHttpOptions();
     return this.http.get(CommonValues.devApi + '/movie', httpOptions);
+        // this.http.get('/api/movie', httpOptions).subscribe(data => {
+        //   this.movies = data;
+        //   console.log(this.movies);
+        // }, err => {
+        //   if(err.status === 401) {
+        //     this.router.navigate(['login']);
+        //   }
+        // })
+  }
+
+  getMovieStream(movieId: string) {
+    let httpOptions = this.auth.getHttpOptions();
+    let url = CommonValues.devApi + '/player/' + movieId;
+    debugger;
+    return this.http.get(url, httpOptions);
   }
 
 }

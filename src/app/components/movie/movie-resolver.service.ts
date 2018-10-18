@@ -9,9 +9,9 @@ import { catchError, map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class MovieResolverService implements Resolve<any> {
-debugger;
   resolve(): Observable<any> {
-    return this.movieService.getMovies().map(movies => movies);
+    return this.movieService.getMovies().map(movies => { 
+      return movies });
   }
 
   constructor(private movieService: MovieService) { }

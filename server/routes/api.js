@@ -99,10 +99,13 @@ router.post('/signup', function(req, res) {
   });
 
   router.use('/player/:movieId',(req, res, next) => {
+    console.log('player middle wear hit. id: ' + req.params.movieId)
     Movie.findById(req.params.movieId, (err, movie) => {
       if (err) {
+        console.log(err)
         res.status(500).send(err);
       } else if (movie) {
+        console.log(movie)
         req.movie = movie;
         next();
       } else {
@@ -113,9 +116,14 @@ router.post('/signup', function(req, res) {
 
   // add video id parameter and implement socket
   router.get('/player/:movieId', passport.authenticate('jwt', { session: false}), function(req, res) {
+    console.log('player end point hit. Movie: ' + req.movie);
     console.log(req)
     console.log(req.headers)
     var token = getToken(req.headers);
+
+// remove this line
+return res.status(200).send({'message': 'hello from /player/:movieId'})
+
     if (token) {
 
     } else {
