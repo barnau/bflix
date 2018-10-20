@@ -34,7 +34,6 @@ export class MovieService {
   getMovieStream(movieId: string) {
     let httpOptions = this.auth.getHttpOptions();
     let url = CommonValues.devApi + '/player/' + movieId;
-    debugger;
     return this.http.get(url, httpOptions);
   }
 

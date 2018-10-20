@@ -6,6 +6,8 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { VgCoreModule } from 'videogular2/core';
 import { VgControlsModule } from 'videogular2/controls';
+import {VgOverlayPlayModule} from 'videogular2/overlay-play';
+import {VgBufferingModule} from 'videogular2/buffering';
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -43,14 +45,14 @@ const appRoutes: Routes = [
     path: 'norights',
     component: NoRightsComponent
   },
-  { path: 'player',
+  { path: 'player/:id',
     component: MoviePlayerComponent
   },
   { path: '',
     redirectTo: '/movies',
     pathMatch: 'full'
   },
-  { 
+  {
     path: '**',
     redirectTo: '/movies',
   }
@@ -65,7 +67,8 @@ const appRoutes: Routes = [
     SignupComponent,
     MovieListComponent,
     NoRightsComponent,
-    MovieThumbnailComponent
+    MovieThumbnailComponent,
+    MoviePlayerComponent
   ],
   imports: [
     BrowserModule,
@@ -84,7 +87,9 @@ const appRoutes: Routes = [
     MatMenuModule,
     MatGridListModule,
     VgCoreModule,
-    VgControlsModule
+    VgControlsModule,
+    VgBufferingModule,
+    VgOverlayPlayModule
   ],
   providers: [MovieResolverService],
   bootstrap: [AppComponent]

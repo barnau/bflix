@@ -18,12 +18,13 @@ export class MovieThumbnailComponent implements OnInit {
   }
 
   play() {
-    this.movieService.getMovieStream(this.movie._id).subscribe( (movie) => {
-      this.router.navigate([''])
-      debugger;
-    }, (err) => {
-      debugger;
-    })
+    this.router.navigate(['/player', this.movie._id])
+    // this.movieService.getMovieStream(this.movie._id).subscribe( (movie) => {
+    //   this.router.navigate([''])
+    //   debugger;
+    // }, (err) => {
+    //   debugger;
+    // })
   }
 
 }
