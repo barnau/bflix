@@ -19,6 +19,7 @@ import { AuthGuardService } from './guards/auth-guard.service';
 import { NoRightsComponent } from './components/login/no-rights.component';
 import { MovieThumbnailComponent } from './components/movie/movie-thumbnail.component';
 import { MovieResolverService } from './components/movie/movie-resolver.service';
+import { MoviePlayerComponent } from './components/movie/movie-player.component';
 
 const appRoutes: Routes = [
   {
@@ -42,11 +43,15 @@ const appRoutes: Routes = [
     path: 'norights',
     component: NoRightsComponent
   },
+  { path: 'player',
+    component: MoviePlayerComponent
+  },
   { path: '',
     redirectTo: '/movies',
     pathMatch: 'full'
   },
-  { path: '**',
+  { 
+    path: '**',
     redirectTo: '/movies',
   }
 
