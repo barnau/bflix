@@ -9,9 +9,9 @@ import { AuthService } from './auth.service';
 })
 export class MovieService {
 
-  private options: any = {'headers': new HttpHeaders({'Content-Type': 'application/json'})}
-  private apiBase: string = CommonValues.devApi;
-  private currentUser: User = JSON.parse(localStorage.getItem(CommonValues.localStorageLoggedInUser)) || new User();
+  // private options: any = {'headers': new HttpHeaders({'Content-Type': 'application/json'})}
+  // private apiBase: string = CommonValues.devApi;
+  // private currentUser: User = JSON.parse(localStorage.getItem(CommonValues.localStorageLoggedInUser)) || new User();
 
 
   constructor(private http: HttpClient, private auth: AuthService) { }

@@ -116,16 +116,10 @@ router.post('/signup', function(req, res) {
 
   // add video id parameter and implement socket
   router.get('/player/:movieId', passport.authenticate('jwt', { session: false}), function(req, res) {
-    console.log('player end point hit. Movie: ' + req.movie);
-    console.log(req)
-    console.log(req.headers)
     var token = getToken(req.headers);
 
-// remove this line
-return res.status(200).send({'message': 'hello from /player/:movieId'})
-
     if (token) {
-
+      console.log(req.movie);
     } else {
       console.log('no token attached to request')
       return res.status(403).send({success: false, msg: 'Unauthorized.'});

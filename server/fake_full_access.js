@@ -18,19 +18,6 @@ var mongoose = require('./config/connection');
   // })
 
 
-  // User.findOne({username: adminUser.username}, (err, user) => {
-  //   if(err) {
-  //       adminUser.save((err) => {
-  //           if(err) {
-  //               console.log('failed to create user. ' + err)
-  //           } else {
-  //               console.log('Created user.')
-  //           }
-  //       })
-  //   } else {
-  //     console.log('User already exists: ' + user)
-  //   }
-  // })
 
 //   User.findOne({username: 'blainearnau@gmail.com'}, (err, user) => {
 
@@ -90,6 +77,14 @@ var mongoose = require('./config/connection');
 //     }
 // });
 
+  // Movie.findOne({title: "The Conjuring"}, (err, movie) => {
+  //   if(err) {
+  //     console.log(err);
+  //   } else {
+  //     console.log('Movie found. Updating: ' + movie);
+  //     movie.location = '/src/assets/movies/solo/solo.mp4'
+  //   }
+  // })
 
 // ADD A MOVIE
   // var newMovie = Movie({
@@ -100,12 +95,20 @@ var mongoose = require('./config/connection');
   //   synopsis: "Ghosts man! But posessions too! And jump scares! Gets you so good!"
   // })
 
+  // var newMovie = Movie({
+  //   location: "tbd",
+  //   title: "Insidious",
+  //   director: "James Wan",
+  //   posterLocation: "https://image.ibb.co/fQv3PU/insidious.jpg",
+  //   synopsis: "This movie also is about ghosts"
+  // })
+
   var newMovie = Movie({
-    location: "tbd",
-    title: "Insidious",
-    director: "James Wan",
-    posterLocation: "https://image.ibb.co/fQv3PU/insidious.jpg",
-    synopsis: "This movie also is about ghosts"
+    location: "/src/assets/movies/solo/solo.mp4",
+    title: "Solo",
+    director: "Ron Howard",
+    posterLocation: "https://image.ibb.co/bGALY0/Solo-character-poster-2.jpg",
+    synopsis: "Forget about Solo. Chewbaca steals the show here."
   })
 
   newMovie.save((err) => {
