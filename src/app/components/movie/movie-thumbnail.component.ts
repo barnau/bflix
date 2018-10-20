@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Movie } from '../../models/movie';
 import { MovieService } from 'src/app/services/movie.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-movie-thumbnail',
@@ -11,13 +12,14 @@ export class MovieThumbnailComponent implements OnInit {
 
  @Input() movie: Movie
 
-  constructor(private movieService: MovieService) { }
+  constructor(private movieService: MovieService, private router: Router) { }
 
   ngOnInit() {
   }
 
   play() {
     this.movieService.getMovieStream(this.movie._id).subscribe( (movie) => {
+      this.router.navigate([''])
       debugger;
     }, (err) => {
       debugger;

@@ -4,6 +4,9 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule, Routes } from '@angular/router';
 
+import { VgCoreModule } from 'videogular2/core';
+import { VgControlsModule } from 'videogular2/controls';
+
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MyNavComponent } from './components/my-nav/my-nav.component';
@@ -16,7 +19,6 @@ import { AuthGuardService } from './guards/auth-guard.service';
 import { NoRightsComponent } from './components/login/no-rights.component';
 import { MovieThumbnailComponent } from './components/movie/movie-thumbnail.component';
 import { MovieResolverService } from './components/movie/movie-resolver.service';
-import { MoviePlayerComponent } from './components/movie/movie-player.component';
 
 const appRoutes: Routes = [
   {
@@ -58,8 +60,7 @@ const appRoutes: Routes = [
     SignupComponent,
     MovieListComponent,
     NoRightsComponent,
-    MovieThumbnailComponent,
-    MoviePlayerComponent
+    MovieThumbnailComponent
   ],
   imports: [
     BrowserModule,
@@ -76,7 +77,9 @@ const appRoutes: Routes = [
     MatListModule,
     MatCardModule,
     MatMenuModule,
-    MatGridListModule
+    MatGridListModule,
+    VgCoreModule,
+    VgControlsModule
   ],
   providers: [MovieResolverService],
   bootstrap: [AppComponent]
