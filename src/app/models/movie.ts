@@ -5,6 +5,7 @@ export class Movie {
   title: string;
   director: string;
   posterLocation;
+  location: string;
   genre: string;
 }
 

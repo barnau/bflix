@@ -14,11 +14,8 @@ export class MoviePlayerComponent implements OnInit {
   constructor(private route: ActivatedRoute, private movieService: MovieService) { }
 
   ngOnInit() {
-    this.movieId = this.route.snapshot.paramMap.get('id');
-    this.movieLocation = 'http://static.videogular.com/assets/videos/videogular.mp4';
-    setTimeout(() => {
-
-    }, 3000);
+    this.movieLocation = this.route.snapshot.paramMap.get('loc');
+    //this.movieLocation = 'http://static.videogular.com/assets/videos/videogular.mp4';
     // this.movieService.getMovieStream(this.movieId).subscribe((data) => {
     //   console.log(data);
     //   this.source = 'http://static.videogular.com/assets/videos/videogular.mp4'

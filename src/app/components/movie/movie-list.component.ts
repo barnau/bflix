@@ -31,6 +31,7 @@ export class MovieListComponent implements OnInit {
 
   ngOnInit() {
     this.movies = this.route.snapshot.data['movies'];
+    debugger;
   }
 
 }

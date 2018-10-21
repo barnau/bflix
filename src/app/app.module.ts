@@ -45,7 +45,7 @@ const appRoutes: Routes = [
     path: 'norights',
     component: NoRightsComponent
   },
-  { path: 'player/:id',
+  { path: 'player/:loc',
     component: MoviePlayerComponent
   },
   { path: '',

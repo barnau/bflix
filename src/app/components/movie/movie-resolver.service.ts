@@ -9,6 +9,7 @@ import { Observable } from 'rxjs';
 export class MovieResolverService implements Resolve<any> {
   resolve(): Observable<any> {
     return this.movieService.getMovies().map(movies => {
+      debugger;
       return movies });
   }
 
