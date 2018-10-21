@@ -1,8 +1,7 @@
 export enum EMovieGenres {
-  Comedy,
-  Action,
-  SciFi,
-  Horror,
-  Drama,
-  Documentary
+  action,
+  comedy,
+  drama,
+  horror,
+  scifi
 }

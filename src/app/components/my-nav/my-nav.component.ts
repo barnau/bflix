@@ -3,6 +3,7 @@ import { BreakpointObserver, Breakpoints, BreakpointState } from '@angular/cdk/l
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { AuthService } from '../../services/auth.service';
+import { EMovieGenres } from 'src/app/models/EMovieGenres.enum';
 
 @Component({
   selector: 'my-nav',
@@ -10,6 +11,7 @@ import { AuthService } from '../../services/auth.service';
   styleUrls: ['./my-nav.component.css']
 })
 export class MyNavComponent {
+  genres = EMovieGenres;
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(

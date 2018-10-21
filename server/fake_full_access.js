@@ -103,19 +103,35 @@ var mongoose = require('./config/connection');
   //   synopsis: "This movie also is about ghosts"
   // })
 
-  var newMovie = Movie({
-    location: "/src/assets/movies/solo/solo.mp4",
-    title: "Solo",
-    director: "Ron Howard",
-    posterLocation: "https://image.ibb.co/bGALY0/Solo-character-poster-2.jpg",
-    synopsis: "Forget about Solo. Chewbaca steals the show here."
-  })
+  // var newMovie = Movie({
+  //   location: "/src/assets/movies/solo/solo.mp4",
+  //   title: "Solo",
+  //   director: "Ron Howard",
+  //   posterLocation: "https://image.ibb.co/bGALY0/Solo-character-poster-2.jpg",
+  //   synopsis: "Should be called Chewbaca. Young Han is lame and young Chewie rules.",
+  //   genre: 'scifi'
+  // })
 
-  newMovie.save((err) => {
+  // newMovie.save((err) => {
+  //   if(err) {
+  //     console.log('there was an error saving this movie.')
+  //   } else {
+  //     console.log('Added ' + newMovie.title)
+  //   }
+  // })
+
+  Movie.findOne({title: "The Conjuring"}, (err, movie) => {
     if(err) {
-      console.log('there was an error saving this movie.')
+      console.log(err);
     } else {
-      console.log('Added ' + newMovie.title)
+      console.log('Movie found. Updating: ' + movie);
+      movie.genre = 'horror'
+      movie.save(err => {
+        if(err)
+          console.log('Problem saving. Err: ' + err)
+        else
+          console.log('updated move: ' + movie.title)
+      })
     }
   })
 

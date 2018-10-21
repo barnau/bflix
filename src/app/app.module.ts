@@ -25,6 +25,13 @@ import { MoviePlayerComponent } from './components/movie/movie-player.component'
 
 const appRoutes: Routes = [
   {
+    path: 'movies/:genre',
+    resolve: { movies: MovieResolverService },
+    component: MovieListComponent,
+    data: { title: 'Movie List' },
+    canActivate: [AuthGuardService]
+  },
+  {
     path: 'movies',
     resolve: { movies: MovieResolverService },
     component: MovieListComponent,

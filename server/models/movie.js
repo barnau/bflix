@@ -21,6 +21,10 @@ var MovieSchema = new Schema({
     synopsis: {
       type: String,
       required: false
+    },
+    genre: {
+        type: String,
+        required: true
     }
 
 });

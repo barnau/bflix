@@ -17,6 +17,7 @@ import 'rxjs/add/operator/map';
 export class MovieListComponent implements OnInit {
 
   movies: any;
+  genre: string;
   
 
   constructor(private http: HttpClient,
@@ -31,7 +32,27 @@ export class MovieListComponent implements OnInit {
 
   ngOnInit() {
     this.movies = this.route.snapshot.data['movies'];
+    // this.genre = this.route.snapshot.params['genre'];
+    // debugger;
+    // this.movies = this.filterMovies(this.movies);
+    // debugger;
+  }
+
+  ngOnChange() {
     debugger;
+    this.genre = this.route.snapshot.params['genre'];
+    this.movies = this.filterMovies(this.movies);
+  }
+
+  filterMovies(movies: Movie[]) {
+    return movies.filter((movie: Movie) =>{ 
+      let x = EMovieGenres[movie.genre.toLocaleLowerCase()];
+      let y = EMovieGenres[this.genre]
+      debugger;
+      console.log(EMovieGenres[movie.genre.toLocaleLowerCase()]);
+      console.log(EMovieGenres[this.genre])
+      return EMovieGenres[movie.genre.toLocaleLowerCase()] === EMovieGenres[this.genre]
+    });
   }
 
 }
