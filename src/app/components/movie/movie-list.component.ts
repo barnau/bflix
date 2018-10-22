@@ -1,12 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Router, ActivatedRoute, ActivatedRouteSnapshot } from '@angular/router';
-import { Observable } from 'rxjs/Observable';
-import { tap, catchError } from 'rxjs/operators';
-import { of } from 'rxjs/observable/of';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Video } from '../../models/movie';
 import { EMovieGenres } from '../../models/EMovieGenres.enum';
-import { MovieService } from '../../services/movie.service';
 import 'rxjs/add/operator/map';
 
 @Component({
@@ -21,10 +16,7 @@ export class MovieListComponent implements OnInit {
   genre: string;
 
 
-  constructor(private http: HttpClient,
-              private router: Router,
-              private route: ActivatedRoute,
-              private moiveService: MovieService) { }
+  constructor(private router: Router, private route: ActivatedRoute) { }
 
 
 
@@ -39,14 +31,14 @@ export class MovieListComponent implements OnInit {
 
     this.route.params.subscribe(params => {
       let genre = params['genre'];
+
       if(genre) {
         if(genre == 'all') {
           this.movies = this.unfilteredMovies;
         } else {
-        this.movies = this.unfilteredMovies.filter((movie: Video) => {
-          return EMovieGenres[movie.genre.toLocaleLowerCase()] === EMovieGenres[genre];
-        })
-      }
+          this.movies = this.unfilteredMovies
+            .filter((movie: Video) => { return EMovieGenres[movie.genre.toLocaleLowerCase()] === EMovieGenres[genre]});
+        }
       }
     })
   }

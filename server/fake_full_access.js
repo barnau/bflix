@@ -125,7 +125,37 @@ var mongoose = require('./config/connection');
       console.log(err);
     } else {
       console.log('Movie found. Updating: ' + movie);
-      movie.genre = 'horror'
+      movie.location = 'http://static.videogular.com/assets/videos/videogular.mp4'
+      movie.save(err => {
+        if(err)
+          console.log('Problem saving. Err: ' + err)
+        else
+          console.log('updated move: ' + movie.title)
+      })
+    }
+  })
+
+  Movie.findOne({title: "Solo"}, (err, movie) => {
+    if(err) {
+      console.log(err);
+    } else {
+      console.log('Movie found. Updating: ' + movie);
+      movie.location = 'http://static.videogular.com/assets/videos/videogular.mp4'
+      movie.save(err => {
+        if(err)
+          console.log('Problem saving. Err: ' + err)
+        else
+          console.log('updated move: ' + movie.title)
+      })
+    }
+  })
+
+  Movie.findOne({title: "The Conjuring"}, (err, movie) => {
+    if(err) {
+      console.log(err);
+    } else {
+      console.log('Movie found. Updating: ' + movie);
+      movie.location = 'http://static.videogular.com/assets/videos/videogular.mp4'
       movie.save(err => {
         if(err)
           console.log('Problem saving. Err: ' + err)
