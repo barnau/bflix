@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Movie } from '../../models/movie';
+import { Video } from '../../models/movie';
 import { MovieService } from 'src/app/services/movie.service';
 import { Router } from '@angular/router';
 
@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 })
 export class MovieThumbnailComponent implements OnInit {
 
- @Input() movie: Movie
+ @Input() movie: Video
 
   constructor(private movieService: MovieService, private router: Router) { }
 

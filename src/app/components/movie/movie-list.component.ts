@@ -4,7 +4,7 @@ import { Router, ActivatedRoute, ActivatedRouteSnapshot } from '@angular/router'
 import { Observable } from 'rxjs/Observable';
 import { tap, catchError } from 'rxjs/operators';
 import { of } from 'rxjs/observable/of';
-import { Movie } from '../../models/movie';
+import { Video } from '../../models/movie';
 import { EMovieGenres } from '../../models/EMovieGenres.enum';
 import { MovieService } from '../../services/movie.service';
 import 'rxjs/add/operator/map';
@@ -16,14 +16,17 @@ import 'rxjs/add/operator/map';
 })
 export class MovieListComponent implements OnInit {
 
-  movies: any;
+  movies: Video[];
+  unfilteredMovies: Video[];
   genre: string;
-  
+
 
   constructor(private http: HttpClient,
               private router: Router,
               private route: ActivatedRoute,
               private moiveService: MovieService) { }
+
+
 
   logout() {
     localStorage.removeItem('jwtToken');
@@ -31,28 +34,27 @@ export class MovieListComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.movies = this.route.snapshot.data['movies'];
-    // this.genre = this.route.snapshot.params['genre'];
-    // debugger;
-    // this.movies = this.filterMovies(this.movies);
-    // debugger;
+    this.unfilteredMovies = this.route.snapshot.data['movies'];
+    this.movies = this.unfilteredMovies;
+
+    this.route.params.subscribe(params => {
+      let genre = params['genre'];
+      if(genre) {
+        if(genre == 'all') {
+          this.movies = this.unfilteredMovies;
+        } else {
+        this.movies = this.unfilteredMovies.filter((movie: Video) => {
+          return EMovieGenres[movie.genre.toLocaleLowerCase()] === EMovieGenres[genre];
+        })
+      }
+      }
+    })
   }
 
-  ngOnChange() {
-    debugger;
-    this.genre = this.route.snapshot.params['genre'];
-    this.movies = this.filterMovies(this.movies);
-  }
 
-  filterMovies(movies: Movie[]) {
-    return movies.filter((movie: Movie) =>{ 
-      let x = EMovieGenres[movie.genre.toLocaleLowerCase()];
-      let y = EMovieGenres[this.genre]
-      debugger;
-      console.log(EMovieGenres[movie.genre.toLocaleLowerCase()]);
-      console.log(EMovieGenres[this.genre])
-      return EMovieGenres[movie.genre.toLocaleLowerCase()] === EMovieGenres[this.genre]
-    });
-  }
+
+
+
+
 
 }

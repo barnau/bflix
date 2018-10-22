@@ -8,6 +8,7 @@
     [opened]="!(isHandset$ | async) && auth.isAuthorized()">
     <mat-toolbar color="primary">Categories</mat-toolbar>
     <mat-nav-list>
+        <a mat-list-item [routerLink]="['movies', genres[genres.all]]" routerLinkActive="router-link-active" >All</a>
       <a mat-list-item [routerLink]="['movies', genres[genres.action]]" routerLinkActive="router-link-active" >Action</a>
       <a mat-list-item [routerLink]="['movies', genres[genres.comedy]]" routerLinkActive="router-link-active" >Comedy</a>
       <a mat-list-item [routerLink]="['movies', genres[genres.drama]]" routerLinkActive="router-link-active" >Drama</a>

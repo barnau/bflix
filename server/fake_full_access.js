@@ -120,7 +120,7 @@ var mongoose = require('./config/connection');
   //   }
   // })
 
-  Movie.findOne({title: "The Conjuring"}, (err, movie) => {
+  Movie.findOne({title: "Insidious"}, (err, movie) => {
     if(err) {
       console.log(err);
     } else {

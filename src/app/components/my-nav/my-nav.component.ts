@@ -18,7 +18,7 @@ export class MyNavComponent {
       map(result => result.matches)
     );
 
-  constructor(private breakpointObserver: BreakpointObserver, private auth: AuthService) {}
+  constructor(private breakpointObserver: BreakpointObserver, public auth: AuthService) {}
 
   logout() {
     this.auth.logout();
