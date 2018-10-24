@@ -1,0 +1,7 @@
+<div class="container">
+    <mat-grid-list cols="3" rowHeight="500px">
+      <div>this is a test mofo</div>
+      <mat-grid-tile *ngFor="let movie of movies"><app-movie-thumbnail  [movie]="movie"></app-movie-thumbnail></mat-grid-tile>
+    </mat-grid-list>
+  </div>
+
