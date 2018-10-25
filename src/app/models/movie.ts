@@ -1,5 +1,5 @@
 
-export class Video {
+export interface Video {
   _id: string;
   synopsis: string;
   title: string;

@@ -24,6 +24,7 @@ import { MovieResolverService } from './components/movie/movie-resolver.service'
 import { MoviePlayerComponent } from './components/movie/movie-player.component';
 import { TvListComponent } from './components/tv/tv-list.component';
 import { TvThumbnailComponent } from './components/tv/tv-thumbnail.component';
+import { TvDetailComponent } from './components/tv/tv-detail.component';
 
 const appRoutes: Routes = [
   {
@@ -52,6 +53,13 @@ const appRoutes: Routes = [
     // resolve: { movies: MovieResolverService },
     component: TvListComponent,
     data: { title: 'TV List' },
+    canActivate: [AuthGuardService]
+  },
+  {
+    path: 'tvdetails/:seasons',
+    // resolve: { movies: MovieResolverService },
+    component: TvDetailComponent,
+    data: { title: 'TV Details' },
     canActivate: [AuthGuardService]
   },
   {
@@ -94,7 +102,8 @@ const appRoutes: Routes = [
     MoviePlayerComponent,
     TvListComponent,
     TvListComponent,
-    TvThumbnailComponent
+    TvThumbnailComponent,
+    TvDetailComponent
   ],
   imports: [
     BrowserModule,

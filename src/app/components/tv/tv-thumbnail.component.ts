@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { TvShow, Season } from 'src/app/models/tv';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-tv-thumbnail',
@@ -7,9 +9,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TvThumbnailComponent implements OnInit {
 
-  constructor() { }
+  @Input()
+  show: TvShow;
+
+  constructor(private router: Router) { }
 
   ngOnInit() {
+  }
+
+  sendSeasonsToDetails(seasons: Season[]) {
+    console.log(seasons);
+    var seasonsString = JSON.stringify(seasons);
+    this.router.navigate(['/tvdetails', seasonsString])
   }
 
 }

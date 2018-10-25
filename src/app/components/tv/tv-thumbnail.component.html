@@ -1,3 +1,16 @@
-<p>
-  tv-thumbnail works!
-</p>
+<mat-card class="tv-card">
+    <mat-card-header>
+      <mat-card-title >{{show.title}} </mat-card-title>
+      <!-- <mat-card-subtitle><small>Director: <i>{{movie.director}}</i></small></mat-card-subtitle> -->
+      <!-- <div class="fill-remaining-space"></div>
+      <button mat-button  class="button-border">Details</button> -->
+    </mat-card-header>
+    <a (click)="sendSeasonsToDetails(show.seasons)">
+      <img  mat-card-image class="tv-poster" [src]="show.posterLocation">
+    </a>
+    <mat-card-content>
+      <p class="synopsis">
+        {{show.synopsis}}
+      </p>
+    </mat-card-content>
+  </mat-card>

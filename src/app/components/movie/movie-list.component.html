@@ -1,24 +1,4 @@
-<!-- <div class="container">
-  <h1>Movie List</h1>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Location</th>
-        <th>Title</th>
-        <th>Director</th>
-        <th>posterLocation</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let movie of movies">
-        <td>{{ movie.location }}</td>
-        <td>{{ movie.title }}</td>
-        <td>{{ movie.director }}</td>
-        <td>{{ movie.posterLocation }}</td>
-      </tr>
-    </tbody>
-  </table>
-</div> -->
+
 <div class="container">
   <mat-grid-list cols="3" rowHeight="500px">
     <mat-grid-tile *ngFor="let movie of movies"><app-movie-thumbnail  [movie]="movie"></app-movie-thumbnail></mat-grid-tile>
