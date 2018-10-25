@@ -13,7 +13,7 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MyNavComponent } from './components/my-nav/my-nav.component';
 import { LayoutModule } from '@angular/cdk/layout';
-import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule, MatCardModule, MatMenuModule, MatGridListModule, MatButtonToggleModule } from '@angular/material';
+import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule, MatCardModule, MatMenuModule, MatGridListModule, MatButtonToggleModule, MatTreeModule } from '@angular/material';
 import { LoginComponent } from './components/login/login.component';
 import { SignupComponent } from './components/signup/signup.component';
 import { MovieListComponent } from './components/movie/movie-list.component';
@@ -122,6 +122,7 @@ const appRoutes: Routes = [
     MatMenuModule,
     MatGridListModule,
     MatButtonToggleModule,
+    MatTreeModule,
     VgCoreModule,
     VgControlsModule,
     VgBufferingModule,

@@ -2,6 +2,7 @@ var User = require('./models/user');
 var Movie = require('./models/movie');
 
 var mongoose = require('./config/connection');
+var exampleVideoLocation = "http://static.videogular.com/assets/videos/videogular.mp4";
 
   var admin = User({
       username: 'admin',
@@ -9,13 +10,13 @@ var mongoose = require('./config/connection');
       fullAccess: true
   });
 
-  // admin.save((err) => {
-  //   if(err) {
-  //     console.log(err);
-  //   } else {
-  //     console.log('user saved')
-  //   }
-  // })
+  admin.save((err) => {
+    if(err) {
+      console.log(err);
+    } else {
+      console.log('user saved')
+    }
+  })
 
 
 
@@ -87,30 +88,53 @@ var mongoose = require('./config/connection');
   // })
 
 // ADD A MOVIE
-  // var newMovie = Movie({
-  //   location: "tbd",
-  //   title: "The Conjuring",
-  //   director: "James Wan",
-  //   posterLocation: "https://image.ibb.co/jr5frL/theconjuring.jpg",
-  //   synopsis: "Ghosts man! But posessions too! And jump scares! Gets you so good!"
-  // })
+  var theconjuring = Movie({
+    location: exampleVideoLocation,
+    genre: 'horror',
+    title: "The Conjuring",
+    director: "James Wan",
+    posterLocation: "https://image.ibb.co/jr5frL/theconjuring.jpg",
+    synopsis: "Ghosts man! But posessions too! And jump scares! Gets you so good!"
+  })
 
-  // var newMovie = Movie({
-  //   location: "tbd",
-  //   title: "Insidious",
-  //   director: "James Wan",
-  //   posterLocation: "https://image.ibb.co/fQv3PU/insidious.jpg",
-  //   synopsis: "This movie also is about ghosts"
-  // })
+  theconjuring.save(err => {
+    if (err)
+      console.log(err)
+    else
+      console.log('saved the conjuring')
+  })
 
-  // var newMovie = Movie({
-  //   location: "/src/assets/movies/solo/solo.mp4",
-  //   title: "Solo",
-  //   director: "Ron Howard",
-  //   posterLocation: "https://image.ibb.co/bGALY0/Solo-character-poster-2.jpg",
-  //   synopsis: "Should be called Chewbaca. Young Han is lame and young Chewie rules.",
-  //   genre: 'scifi'
-  // })
+  var insidious = Movie({
+    location: exampleVideoLocation,
+    genre: 'horror',
+    title: "Insidious",
+    director: "James Wan",
+    posterLocation: "https://image.ibb.co/fQv3PU/insidious.jpg",
+    synopsis: "This movie also is about ghosts"
+  })
+
+  insidious.save(err => {
+    if (err)
+      console.log(err)
+    else
+      console.log('saved insidious')
+  })
+
+  var solo = Movie({
+    location: exampleVideoLocation,
+    title: "Solo",
+    director: "Ron Howard",
+    posterLocation: "https://image.ibb.co/bGALY0/Solo-character-poster-2.jpg",
+    synopsis: "Should be called Chewbaca. Young Han is lame and young Chewie rules.",
+    genre: 'scifi'
+  })
+
+  solo.save(err => {
+    if (err)
+      console.log(err)
+    else
+      console.log('saved solo')
+  })
 
   // newMovie.save((err) => {
   //   if(err) {
@@ -120,50 +144,50 @@ var mongoose = require('./config/connection');
   //   }
   // })
 
-  Movie.findOne({title: "Insidious"}, (err, movie) => {
-    if(err) {
-      console.log(err);
-    } else {
-      console.log('Movie found. Updating: ' + movie);
-      movie.location = 'http://static.videogular.com/assets/videos/videogular.mp4'
-      movie.save(err => {
-        if(err)
-          console.log('Problem saving. Err: ' + err)
-        else
-          console.log('updated move: ' + movie.title)
-      })
-    }
-  })
+  // Movie.findOne({title: "Insidious"}, (err, movie) => {
+  //   if(err) {
+  //     console.log(err);
+  //   } else {
+  //     console.log('Movie found. Updating: ' + movie);
+  //     movie.location = 'http://static.videogular.com/assets/videos/videogular.mp4'
+  //     movie.save(err => {
+  //       if(err)
+  //         console.log('Problem saving. Err: ' + err)
+  //       else
+  //         console.log('updated move: ' + movie.title)
+  //     })
+  //   }
+  // })
 
-  Movie.findOne({title: "Solo"}, (err, movie) => {
-    if(err) {
-      console.log(err);
-    } else {
-      console.log('Movie found. Updating: ' + movie);
-      movie.location = 'http://static.videogular.com/assets/videos/videogular.mp4'
-      movie.save(err => {
-        if(err)
-          console.log('Problem saving. Err: ' + err)
-        else
-          console.log('updated move: ' + movie.title)
-      })
-    }
-  })
+  // Movie.findOne({title: "Solo"}, (err, movie) => {
+  //   if(err) {
+  //     console.log(err);
+  //   } else {
+  //     console.log('Movie found. Updating: ' + movie);
+  //     movie.location = 'http://static.videogular.com/assets/videos/videogular.mp4'
+  //     movie.save(err => {
+  //       if(err)
+  //         console.log('Problem saving. Err: ' + err)
+  //       else
+  //         console.log('updated move: ' + movie.title)
+  //     })
+  //   }
+  // })
 
-  Movie.findOne({title: "The Conjuring"}, (err, movie) => {
-    if(err) {
-      console.log(err);
-    } else {
-      console.log('Movie found. Updating: ' + movie);
-      movie.location = 'http://static.videogular.com/assets/videos/videogular.mp4'
-      movie.save(err => {
-        if(err)
-          console.log('Problem saving. Err: ' + err)
-        else
-          console.log('updated move: ' + movie.title)
-      })
-    }
-  })
+  // Movie.findOne({title: "The Conjuring"}, (err, movie) => {
+  //   if(err) {
+  //     console.log(err);
+  //   } else {
+  //     console.log('Movie found. Updating: ' + movie);
+  //     movie.location = 'http://static.videogular.com/assets/videos/videogular.mp4'
+  //     movie.save(err => {
+  //       if(err)
+  //         console.log('Problem saving. Err: ' + err)
+  //       else
+  //         console.log('updated move: ' + movie.title)
+  //     })
+  //   }
+  // })
 
   // GET ALL MOVIES
 
