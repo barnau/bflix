@@ -1,9 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs/observable';
-import { tap, catchError } from 'rxjs/operators';
-import { of } from 'rxjs/observable/of';
 import { LoginData } from '../../models/login-data';
 import { AuthService } from '../../services/auth.service';
 

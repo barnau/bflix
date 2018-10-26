@@ -2,7 +2,7 @@ import {FlatTreeControl} from '@angular/cdk/tree';
 import { Component, OnInit, Injectable } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import {MatTreeFlatDataSource, MatTreeFlattener} from '@angular/material/tree';
-import { Season } from 'src/app/models/tv';
+import { Season, Episode } from 'src/app/models/tv';
 import { FileDatabase, FileFlatNode, FileNode } from 'src/app/models/file-node';
 import { Observable, of as observableOf } from 'rxjs';
 
@@ -19,9 +19,11 @@ export class TvDetailComponent implements OnInit {
   treeFlattener: MatTreeFlattener<FileNode, FileFlatNode>;
   dataSource: MatTreeFlatDataSource<FileNode, FileFlatNode>;
   seasons: Season[];
+
   constructor(private route: ActivatedRoute, public database: FileDatabase) {
     debugger;
-    let seasonsString = this.route.snapshot.params['seasons'];
+    var seasons = JSON.parse(this.route.snapshot.params['seasons']);
+    var seasonsString =JSON.stringify(this.treeifySeasons(seasons));
     this.database.initialize(seasonsString);
 
     this.treeFlattener = new MatTreeFlattener(this.transformer, this._getLevel, this._isExpandable, this._getChildren);
@@ -29,7 +31,7 @@ export class TvDetailComponent implements OnInit {
     this.dataSource = new MatTreeFlatDataSource(this.treeControl, this.treeFlattener);
 
     this.database.dataChange.subscribe(data => this.dataSource.data = data);
-   }
+  }
 
   ngOnInit() {
     debugger;
@@ -48,5 +50,31 @@ export class TvDetailComponent implements OnInit {
   private _getChildren = (node: FileNode): Observable<FileNode[]> => observableOf(node.children);
 
   hasChild = (_: number, _nodeData: FileFlatNode) => _nodeData.expandable;
+
+  treeifySeasons(seasons: Season[]) {
+    Object.keys(seasons);
+    let result: any = {}
+
+    //  var x= seasons.map((season: Season) => {
+    //   return result[season.seasonNumber] = {
+    //     episodes: season.episodes
+    //   }
+    // });
+
+    // x.episodes
+
+    seasons.forEach((season: Season) => {
+      result[season.seasonNumber] = {};
+      season.episodes.forEach((episode: Episode) => {
+        result[season.seasonNumber][episode.name] = episode.location;
+      })
+    })
+    debugger;
+
+    return result;
+
+
+
+  }
 
 }
