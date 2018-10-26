@@ -1,0 +1,10 @@
+.play-icon {
+  font-size: 20px; margin-top:3px;
+}
+
+.play-button {
+  border: 2px solid #a52652;
+  border-radius: 5px;
+  margin-right: 75px;
+  width: 100%;
+}
