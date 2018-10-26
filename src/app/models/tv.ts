@@ -4,6 +4,8 @@ export interface TvShow {
     seasons: Season[];
     synopsis: string;
     posterLocation: string;
+    horizontalPosterLocation: string;
+    genre: string;
 }
 
 export interface Season {

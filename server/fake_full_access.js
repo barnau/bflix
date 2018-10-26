@@ -1,22 +1,25 @@
 var User = require('./models/user');
 var Movie = require('./models/movie');
+var TvShow = require('./models/tvshow');
+var Episode = require('./models/episode');
+var Season = require('./models/season');
 
 var mongoose = require('./config/connection');
 var exampleVideoLocation = "http://static.videogular.com/assets/videos/videogular.mp4";
 
-  var admin = User({
-      username: 'admin',
-      password: 'password',
-      fullAccess: true
-  });
+  // var admin = User({
+  //     username: 'admin',
+  //     password: 'password',
+  //     fullAccess: true
+  // });
 
-  admin.save((err) => {
-    if(err) {
-      console.log(err);
-    } else {
-      console.log('user saved')
-    }
-  })
+  // admin.save((err) => {
+  //   if(err) {
+  //     console.log(err);
+  //   } else {
+  //     console.log('user saved')
+  //   }
+  // })
 
 
 
@@ -88,53 +91,53 @@ var exampleVideoLocation = "http://static.videogular.com/assets/videos/videogula
   // })
 
 // ADD A MOVIE
-  var theconjuring = Movie({
-    location: exampleVideoLocation,
-    genre: 'horror',
-    title: "The Conjuring",
-    director: "James Wan",
-    posterLocation: "https://image.ibb.co/jr5frL/theconjuring.jpg",
-    synopsis: "Ghosts man! But posessions too! And jump scares! Gets you so good!"
-  })
+  // var theconjuring = Movie({
+  //   location: exampleVideoLocation,
+  //   genre: 'horror',
+  //   title: "The Conjuring",
+  //   director: "James Wan",
+  //   posterLocation: "https://image.ibb.co/jr5frL/theconjuring.jpg",
+  //   synopsis: "Ghosts man! But posessions too! And jump scares! Gets you so good!"
+  // })
 
-  theconjuring.save(err => {
-    if (err)
-      console.log(err)
-    else
-      console.log('saved the conjuring')
-  })
+  // theconjuring.save(err => {
+  //   if (err)
+  //     console.log(err)
+  //   else
+  //     console.log('saved the conjuring')
+  // })
 
-  var insidious = Movie({
-    location: exampleVideoLocation,
-    genre: 'horror',
-    title: "Insidious",
-    director: "James Wan",
-    posterLocation: "https://image.ibb.co/fQv3PU/insidious.jpg",
-    synopsis: "This movie also is about ghosts"
-  })
+  // var insidious = Movie({
+  //   location: exampleVideoLocation,
+  //   genre: 'horror',
+  //   title: "Insidious",
+  //   director: "James Wan",
+  //   posterLocation: "https://image.ibb.co/fQv3PU/insidious.jpg",
+  //   synopsis: "This movie also is about ghosts"
+  // })
 
-  insidious.save(err => {
-    if (err)
-      console.log(err)
-    else
-      console.log('saved insidious')
-  })
+  // insidious.save(err => {
+  //   if (err)
+  //     console.log(err)
+  //   else
+  //     console.log('saved insidious')
+  // })
 
-  var solo = Movie({
-    location: exampleVideoLocation,
-    title: "Solo",
-    director: "Ron Howard",
-    posterLocation: "https://image.ibb.co/bGALY0/Solo-character-poster-2.jpg",
-    synopsis: "Should be called Chewbaca. Young Han is lame and young Chewie rules.",
-    genre: 'scifi'
-  })
+  // var solo = Movie({
+  //   location: exampleVideoLocation,
+  //   title: "Solo",
+  //   director: "Ron Howard",
+  //   posterLocation: "https://image.ibb.co/bGALY0/Solo-character-poster-2.jpg",
+  //   synopsis: "Should be called Chewbaca. Young Han is lame and young Chewie rules.",
+  //   genre: 'scifi'
+  // })
 
-  solo.save(err => {
-    if (err)
-      console.log(err)
-    else
-      console.log('saved solo')
-  })
+  // solo.save(err => {
+  //   if (err)
+  //     console.log(err)
+  //   else
+  //     console.log('saved solo')
+  // })
 
   // newMovie.save((err) => {
   //   if(err) {
@@ -196,4 +199,54 @@ var exampleVideoLocation = "http://static.videogular.com/assets/videos/videogula
   //   console.log('movies found')
   //   console.log(movie);
   // });
+
+  // Add a TV Show
+
+  var episodes = [
+    new Episode({
+      location: exampleVideoLocation,
+      name: "episode one"
+    }),
+    new Episode({
+      location: exampleVideoLocation,
+      name: "episode two"
+    }),
+    new Episode({
+      location: exampleVideoLocation,
+      name: "episode three"
+    })
+  ];
+
+  episodes.save(err => {
+    if(err)
+      console.log(err)
+    else
+      console.log("Castle Rock saved.")
+  })
+
+
+
+  // var seasons = [
+  //   new Season({
+  //     seasonNumber: "Season One",
+  //     episodes: episodes
+  //   })
+  // ]
+
+
+  // var castlerock = new TvShow({
+  //   title: "Castle Rock",
+  //   synopsis: "After watching the first season I'm not really sure. Maybe the devil. Alternate realities possibly? Still pretty cool. Confusing though.",
+  //   genre: "horror",
+  //   posterLocation: "https://image.ibb.co/ey1ZtA/castle-rock.jpg",
+  //   seasons: seasons
+  // })
+
+  // castlerock.save(err => {
+  //   if(err)
+  //     console.log(err)
+  //   else
+  //     console.log("Castle Rock saved.")
+  // })
+
 

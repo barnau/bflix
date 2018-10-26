@@ -25,6 +25,7 @@ import { MoviePlayerComponent } from './components/movie/movie-player.component'
 import { TvListComponent } from './components/tv/tv-list.component';
 import { TvThumbnailComponent } from './components/tv/tv-thumbnail.component';
 import { TvDetailComponent } from './components/tv/tv-detail.component';
+import { TvShowTreeComponent } from './components/tv/tv-show-tree.component';
 
 const appRoutes: Routes = [
   {
@@ -103,7 +104,8 @@ const appRoutes: Routes = [
     TvListComponent,
     TvListComponent,
     TvThumbnailComponent,
-    TvDetailComponent
+    TvDetailComponent,
+    TvShowTreeComponent
   ],
   imports: [
     BrowserModule,
@@ -122,6 +124,7 @@ const appRoutes: Routes = [
     MatMenuModule,
     MatGridListModule,
     MatButtonToggleModule,
+    MatButtonModule,
     MatTreeModule,
     VgCoreModule,
     VgControlsModule,

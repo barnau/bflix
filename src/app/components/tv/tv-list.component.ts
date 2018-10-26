@@ -10,7 +10,7 @@ export class TvListComponent implements OnInit {
 
   tvshows: TvShow[];
 
-  constructor() { 
+  constructor() {
     this.tvshows = [
       {
         seasons: [
@@ -34,7 +34,9 @@ export class TvListComponent implements OnInit {
         ],
         synopsis: "Some whore sleeps around or something",
         title: "The Affair",
-        posterLocation: "https://image.ibb.co/fBdYiA/castlerock.jpg"
+        posterLocation: "https://image.ibb.co/fBdYiA/castlerock.jpg",
+        horizontalPosterLocation: "tbd",
+        genre: 'drama'
       },
       {
         seasons: [
@@ -58,10 +60,12 @@ export class TvListComponent implements OnInit {
         ],
         synopsis: "After watching the first season I'm not really sure. Maybe the devil. Alternate realities possibly? Still pretty cool. Confusing though.",
         title: "Castle Rock",
-        posterLocation: "https://image.ibb.co/nF7Uqq/theaffair.jpg"
+        posterLocation: "https://image.ibb.co/nF7Uqq/theaffair.jpg",
+        horizontalPosterLocation: "tbd",
+        genre: 'horror'
       }
     ];
- 
+
   }
 
   ngOnInit() {
