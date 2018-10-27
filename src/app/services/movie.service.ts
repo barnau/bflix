@@ -16,7 +16,7 @@ export class MovieService {
 
   constructor(private http: HttpClient, private auth: AuthService) { }
 
-  getHttpOptions
+  
 
   getMovies() {
     let httpOptions = this.auth.getHttpOptions();

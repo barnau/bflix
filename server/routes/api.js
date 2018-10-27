@@ -7,12 +7,14 @@ var jwt = require('jsonwebtoken');
 var router = express.Router();
 var User = require("../models/user");
 var Movie = require("../models/movie");
+var TvShow = require("../models/tvshow");
 
 /* GET home page. */
 router.get('/', (req, res, next) => {
     res.send('Express RESTful API');
 });
 
+// SIGNUP
 router.post('/signup', function(req, res) {
     if (!req.body.username || !req.body.password) {
       res.json({success: false, msg: 'Please pass username and password.'});
@@ -33,6 +35,7 @@ router.post('/signup', function(req, res) {
     }
   });
 
+  //LOGIN
   router.post('/signin', function(req, res) {
     console.log(req);
     User.findOne({
@@ -58,6 +61,7 @@ router.post('/signup', function(req, res) {
     });
   });
 
+  // ADD MOVIE
   router.post('/movie', passport.authenticate('jwt', { session: false}), function(req, res) {
     var token = getToken(req.headers);
     if (token) {
@@ -81,6 +85,7 @@ router.post('/signup', function(req, res) {
     }
   });
 
+  // GET ALL MOVIES
   router.get('/movie', passport.authenticate('jwt', { session: false}), function(req, res) {
     console.log(req)
     console.log(req.headers)
@@ -98,6 +103,7 @@ router.post('/signup', function(req, res) {
     }
   });
 
+  // MIDDLE WEAR AUTO ATTACH MOVIE
   router.use('/player/:movieId',(req, res, next) => {
     console.log('player middle wear hit. id: ' + req.params.movieId)
     Movie.findById(req.params.movieId, (err, movie) => {
@@ -114,12 +120,32 @@ router.post('/signup', function(req, res) {
     })
   })
 
+  
+
   // add video id parameter and implement socket
   router.get('/player/:movieId', passport.authenticate('jwt', { session: false}), function(req, res) {
     var token = getToken(req.headers);
 
     if (token) {
       console.log(req.movie);
+    } else {
+      console.log('no token attached to request')
+      return res.status(403).send({success: false, msg: 'Unauthorized.'});
+    }
+  });
+
+  //GET ALL TV SHOWS
+  router.get('/tvshow', passport.authenticate('jwt', { session: false}), function(req, res) {
+    console.log(req)
+    console.log(req.headers)
+    var token = getToken(req.headers);
+    if (token) {
+      TvShow.find(function (err, shows) {
+        if (err) return next(err);
+        console.log('shows found')
+        console.log(shows);
+        res.json(shows);
+      });
     } else {
       console.log('no token attached to request')
       return res.status(403).send({success: false, msg: 'Unauthorized.'});

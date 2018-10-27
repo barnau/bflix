@@ -1,11 +1,132 @@
 var User = require('./models/user');
 var Movie = require('./models/movie');
-var TvShow = require('./models/tvshow');
-var Episode = require('./models/episode');
-var Season = require('./models/season');
-
+//var TvShow = require('./models/tvshow');
+// var Episode = require('./models/episode');
+// var Season = require('./models/season');
+var TvShow = require('./models/author');
 var mongoose = require('./config/connection');
 var exampleVideoLocation = "http://static.videogular.com/assets/videos/videogular.mp4";
+
+var saveCallback = (err) => {
+  if(err)
+    console.log(err)
+  else
+    console.log('Saved...')
+}
+
+TvShow.find({}, (err, shows) => {
+  if(err) console.log(err)
+  else {
+    shows.forEach(element => {
+      element.seasons.forEach(episode => {
+        console.log(episode);
+      })
+    });
+  }
+})
+
+// var tvSHow = new TvShow({
+//   title: "Castle Rock",
+//   synopsis: "After watching the first season I'm not really sure. Maybe the devil. Alternate realities possibly? Still pretty cool. Confusing though.",
+//   posterLocation: "https://image.ibb.co/nF7Uqq/theaffair.jpg",
+//   horizontalPosterLocation: "tbd",
+//   genre: 'horror',
+//   seasons: [
+//     {
+//       seasonNumber: "Season One",
+//       episodes: [
+//         {
+//           location: exampleVideoLocation,
+//           name: "Episode One"
+//         }
+//       ]
+//     }
+//   ]
+// })
+
+// var theaffair = new TvShow({
+//   title: "The Affair",
+//   synopsis: "Not really sure. For my wife. Enjoy boo.",
+//   posterLocation: "https://image.ibb.co/hYJF1V/the-affair-poster-cropped.jpg",
+//   horizontalPosterLocation: "tbd",
+//   genre: 'drama',
+//   seasons: [
+//     {
+//       seasonNumber: "Season One",
+//       episodes: [
+//         {
+//           location: exampleVideoLocation,
+//           name: "Episode One"
+//         },
+//         {
+//           location: exampleVideoLocation,
+//           name: "Episode Two"
+//         },
+//         {
+//           location: exampleVideoLocation,
+//           name: "Episode Three"
+//         },
+//         {
+//           location: exampleVideoLocation,
+//           name: "Episode Four"
+//         },
+//         {
+//           location: exampleVideoLocation,
+//           name: "Episode Five"
+//         }
+//       ]
+//     },
+//     {
+//       seasonNumber: "Season Two",
+//       episodes: [
+//         {
+//           location: exampleVideoLocation,
+//           name: "Episode One"
+//         },
+//         {
+//           location: exampleVideoLocation,
+//           name: "Episode Two"
+//         },
+//         {
+//           location: exampleVideoLocation,
+//           name: "Episode Three"
+//         },
+//         {
+//           location: exampleVideoLocation,
+//           name: "Episode Four"
+//         },
+//         {
+//           location: exampleVideoLocation,
+//           name: "Episode Five"
+//         }
+//       ]
+//     }
+//   ]
+// })
+
+// theaffair.save(saveCallback);
+
+
+
+// TvShow.findOne({title: "Castle Rock"}, (err, tvshow) => {
+//   if(err) console.log(err)
+//   else {
+//     tvshow.seasons[0].episodes.push({
+//       location: exampleVideoLocation,
+//       name: "Episode Two"
+//     },
+//     {
+//       location: exampleVideoLocation,
+//       name: "Episode Three"
+//     },
+//     {
+//       location: exampleVideoLocation,
+//       name: "Episode Four"
+//     })
+
+//     tvshow.save(saveCallback);
+//   }
+// })
 
   // var admin = User({
   //     username: 'admin',
@@ -202,28 +323,7 @@ var exampleVideoLocation = "http://static.videogular.com/assets/videos/videogula
 
   // Add a TV Show
 
-  var episodes = [
-    new Episode({
-      location: exampleVideoLocation,
-      name: "episode one"
-    }),
-    new Episode({
-      location: exampleVideoLocation,
-      name: "episode two"
-    }),
-    new Episode({
-      location: exampleVideoLocation,
-      name: "episode three"
-    })
-  ];
-
-  episodes.save(err => {
-    if(err)
-      console.log(err)
-    else
-      console.log("Castle Rock saved.")
-  })
-
+  
 
 
   // var seasons = [
