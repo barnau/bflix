@@ -1,5 +1,6 @@
 
 export interface TvShow {
+    _id: string;
     title: string;
     seasons: Season[];
     synopsis: string;

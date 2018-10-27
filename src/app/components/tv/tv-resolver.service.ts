@@ -9,7 +9,7 @@ import { TvService } from 'src/app/services/tv.service';
 export class TvResolverService implements Resolve<any> {
 
   resolve(route: ActivatedRouteSnapshot): Observable<any> {
-    return this.tvService.getTvShows().map(shows => shows);
+    return this.tvService.getTvShows().map(tvshows => tvshows);
   }
 
   constructor(private tvService: TvService) { }

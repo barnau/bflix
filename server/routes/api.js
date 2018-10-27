@@ -152,6 +152,36 @@ router.post('/signup', function(req, res) {
     }
   });
 
+  // MIDDLE WEAR ATTACH TVSHOW
+  router.use('/tvshow/:id',(req, res, next) => {
+    console.log('player middle wear hit. id: ' + req.params.id)
+    TvShow.findById(req.params.id, (err, tvshow) => {
+      if (err) {
+        console.log(err)
+        res.status(500).send(err);
+      } else if (tvshow) {
+        console.log(tvshow)
+        req.tvshow = tvshow;
+        next();
+      } else {
+        res.status(404).send('moive not found');
+      }
+    })
+  })
+
+  // add 
+  router.get('/tvshow/:id', passport.authenticate('jwt', { session: false}), function(req, res) {
+    var token = getToken(req.headers);
+
+    if (token) {
+      console.log(req.tvshow);
+      res.json(req.tvshow);
+    } else {
+      console.log('no token attached to request')
+      return res.status(403).send({success: false, msg: 'Unauthorized.'});
+    }
+  });
+
   getToken = function (headers) {
     if (headers && headers.authorization) {
       var parted = headers.authorization.split(' ');

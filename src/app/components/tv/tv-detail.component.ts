@@ -1,9 +1,10 @@
 import {FlatTreeControl} from '@angular/cdk/tree';
 import { Component, OnInit, Injectable } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, ActivatedRouteSnapshot } from '@angular/router';
 import {MatTreeFlatDataSource, MatTreeFlattener} from '@angular/material/tree';
-import { Season, Episode } from 'src/app/models/tv';
+import { Season, Episode, TvShow } from 'src/app/models/tv';
 import { FileDatabase, FileFlatNode, FileNode } from 'src/app/models/file-node';
+import { TvService } from 'src/app/services/tv.service';
 
 
 
@@ -14,15 +15,25 @@ import { FileDatabase, FileFlatNode, FileNode } from 'src/app/models/file-node';
   providers: [FileDatabase]
 })
 export class TvDetailComponent implements OnInit {
-  treeControl: FlatTreeControl<FileFlatNode>;
-  treeFlattener: MatTreeFlattener<FileNode, FileFlatNode>;
-  dataSource: MatTreeFlatDataSource<FileNode, FileFlatNode>;
+  
   seasons: Season[];
+  tvshow: TvShow;
 
-  constructor(private route: ActivatedRoute) {}
+  constructor(private route: ActivatedRoute, private tvService: TvService) {}
 
   ngOnInit() {
-    let seasonsString = this.route.snapshot.params['seasons'];
-    this.seasons = JSON.parse(seasonsString);
+    var id = this.route.snapshot.params.id;
+    debugger;
+    this.tvService.getTvShow(id).subscribe((tvshow: TvShow) => {
+      debugger;
+      this.tvshow = tvshow;
+      console.log(tvshow);
+    },
+    (err) => {
+      debugger;
+      console.log(err);
+    })
+    // let seasonsString = this.route.snapshot.params['seasons'];
+    // this.seasons = JSON.parse(seasonsString);
   }
 }

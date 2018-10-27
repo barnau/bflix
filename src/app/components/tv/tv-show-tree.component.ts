@@ -18,10 +18,7 @@ export class TvShowTreeComponent implements OnInit {
   @Input()
   seasons: any;
 
-  constructor(public database: FileDatabase) {
-    debugger;
-
-  }
+  constructor(public database: FileDatabase) {}
 
   ngOnInit() {
     debugger;

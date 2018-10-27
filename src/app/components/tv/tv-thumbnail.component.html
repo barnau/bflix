@@ -5,7 +5,8 @@
       <!-- <div class="fill-remaining-space"></div>
       <button mat-button  class="button-border">Details</button> -->
     </mat-card-header>
-    <a (click)="sendSeasonsToDetails(show.seasons)">
+    <!-- <a (click)="sendSeasonsToDetails(show.seasons)"> -->
+    <a [routerLink]="['/tvdetails', show._id]">
       <img  mat-card-image class="tv-poster" [src]="show.posterLocation">
     </a>
     <mat-card-content>

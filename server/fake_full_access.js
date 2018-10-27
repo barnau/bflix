@@ -3,7 +3,7 @@ var Movie = require('./models/movie');
 //var TvShow = require('./models/tvshow');
 // var Episode = require('./models/episode');
 // var Season = require('./models/season');
-var TvShow = require('./models/author');
+var TvShow = require('./models/tvshow');
 var mongoose = require('./config/connection');
 var exampleVideoLocation = "http://static.videogular.com/assets/videos/videogular.mp4";
 
@@ -14,16 +14,16 @@ var saveCallback = (err) => {
     console.log('Saved...')
 }
 
-TvShow.find({}, (err, shows) => {
-  if(err) console.log(err)
-  else {
-    shows.forEach(element => {
-      element.seasons.forEach(episode => {
-        console.log(episode);
-      })
-    });
-  }
-})
+// TvShow.find({}, (err, shows) => {
+//   if(err) console.log(err)
+//   else {
+//     shows.forEach(element => {
+//       element.seasons.forEach(episode => {
+//         console.log(episode);
+//       })
+//     });
+//   }
+// })
 
 // var tvSHow = new TvShow({
 //   title: "Castle Rock",
@@ -108,25 +108,14 @@ TvShow.find({}, (err, shows) => {
 
 
 
-// TvShow.findOne({title: "Castle Rock"}, (err, tvshow) => {
-//   if(err) console.log(err)
-//   else {
-//     tvshow.seasons[0].episodes.push({
-//       location: exampleVideoLocation,
-//       name: "Episode Two"
-//     },
-//     {
-//       location: exampleVideoLocation,
-//       name: "Episode Three"
-//     },
-//     {
-//       location: exampleVideoLocation,
-//       name: "Episode Four"
-//     })
-
-//     tvshow.save(saveCallback);
-//   }
-// })
+TvShow.findOne({title: "The Affair"}, (err, tvshow) => {
+  if(err) console.log(err)
+  else {
+   tvshow.posterLocation = "https://image.ibb.co/nF7Uqq/theaffair.jpg";
+   tvshow.horizontalPosterLocation = "https://image.ibb.co/hByO6V/the-affair-poster-cropped.jpg"
+   tvshow.save(saveCallback);
+  }
+})
 
   // var admin = User({
   //     username: 'admin',

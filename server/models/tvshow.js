@@ -1,10 +1,28 @@
-var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
-var Season = require('./season');
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
+const EpisodeSchema = new Schema({
+    location: {
+      type: String,
+      required: true
+    },
+    name: {
+      type: String,
+      required: false
+    },
+  });
 
+  const SeasonSchema = new Schema({
+    seasonNumber: {
+      type: String,
+      required: false
+    },
+    episodes: {
+      type: [EpisodeSchema],
+    }
+  });
 
-var TvShowSchema = new Schema({
+  var TvShowSchema = new Schema({
     title: {
         type: String,
         required: true
@@ -26,24 +44,9 @@ var TvShowSchema = new Schema({
         required: true
     },
     seasons: {
-      type: [Season]
+      type: [SeasonSchema]
     }
 
 });
 
-
-
-// var SeasonSchema = new Schema({
-//   seasonNumber: {
-//     type: String,
-//     required: false
-//   },
-//   episodes: {
-//     type: [EpisodeSchema],
-//     required: true
-//   }
-// });
-
-module.exports = mongoose.model('TvShow', TvShowSchema);
-// module.exports = mongoose.model('Season', SeasonSchema);
-// module.exports = mongoose.model('Episode', EpisodeSchema);
+module.exports = mongoose.model('TvShow', TvShowSchema );
