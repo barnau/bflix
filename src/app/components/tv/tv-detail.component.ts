@@ -16,24 +16,12 @@ import { TvService } from 'src/app/services/tv.service';
 })
 export class TvDetailComponent implements OnInit {
   
-  seasons: Season[];
   tvshow: TvShow;
 
   constructor(private route: ActivatedRoute, private tvService: TvService) {}
 
   ngOnInit() {
+    this.tvshow = this.route.snapshot.data['tvshow'];
     var id = this.route.snapshot.params.id;
-    debugger;
-    this.tvService.getTvShow(id).subscribe((tvshow: TvShow) => {
-      debugger;
-      this.tvshow = tvshow;
-      console.log(tvshow);
-    },
-    (err) => {
-      debugger;
-      console.log(err);
-    })
-    // let seasonsString = this.route.snapshot.params['seasons'];
-    // this.seasons = JSON.parse(seasonsString);
   }
 }

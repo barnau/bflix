@@ -21,7 +21,7 @@ export class TvShowTreeComponent implements OnInit {
   constructor(public database: FileDatabase) {}
 
   ngOnInit() {
-    debugger;
+    
     console.log(this.seasons);
     var seasonsString =JSON.stringify(this.treeifySeasons(this.seasons));
     this.database.initialize(seasonsString);
@@ -55,7 +55,7 @@ export class TvShowTreeComponent implements OnInit {
         result[season.seasonNumber][episode.name] = episode.location;
       })
     })
-    debugger;
+    
 
     return result;
 

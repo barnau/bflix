@@ -21,16 +21,16 @@ export class SignupComponent implements OnInit {
   constructor(private http: HttpClient, private router: Router, private auth: AuthService) { }
 
   signup() {
-    debugger;
+    
     this.auth.signup(this.signupData).subscribe((resp: SignUpResponse) => {
-      debugger;
+      
       if(resp.success) {
         this.router.navigate(['login']);
       } else {
         this.message = resp.msg;
       }
     }, err => {
-      debugger;
+      
       this.message = err.error.msg;
     });
 

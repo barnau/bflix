@@ -8,3 +8,7 @@
   margin-right: 75px;
   width: 100%;
 }
+
+.shadow {
+  text-shadow: 2px 2px 4px #000000;
+}

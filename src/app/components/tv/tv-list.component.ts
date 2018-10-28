@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TvShow } from 'src/app/models/tv';
 import { ActivatedRoute } from '@angular/router';
+import { EMovieGenres } from 'src/app/models/EMovieGenres.enum';
 
 @Component({
   selector: 'app-tv-list',
@@ -8,16 +9,27 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./tv-list.component.css']
 })
 export class TvListComponent implements OnInit {
-
+  
   tvshows: TvShow[];
+  unfilteredTvshows: TvShow[];
 
-  constructor(private route: ActivatedRoute) {
-    
-
-  }
+  constructor(private route: ActivatedRoute) {}
 
   ngOnInit() {
-    this.tvshows = this.route.snapshot.data['tvshows'];
+    this.unfilteredTvshows = this.route.snapshot.data['tvshows'];
+    this.tvshows = this.unfilteredTvshows;
+    this.route.params.subscribe(params => {
+      let genre = params['genre'];
+
+      if(genre) {
+        if(genre == 'all') {
+          this.tvshows = this.unfilteredTvshows;
+        } else {
+          this.tvshows = this.unfilteredTvshows
+            .filter((movie: TvShow) => { return EMovieGenres[movie.genre.toLocaleLowerCase()] === EMovieGenres[genre]});
+        }
+      }
+    })
   }
 
 }

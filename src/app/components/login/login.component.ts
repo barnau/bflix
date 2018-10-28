@@ -21,7 +21,7 @@ export class LoginComponent implements OnInit {
     console.log(this.loginData);
     this.auth.login(this.loginData)
         .subscribe( resp => {
-          debugger;
+          
           if(resp) {
             this.data = resp;
              this.router.navigate(['movies']);

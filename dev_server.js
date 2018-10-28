@@ -16,7 +16,7 @@ var mongoose = require('./server/config/connection');
 
 var app = express();
 
-var port = process.env.PORT || 3001;
+var port = process.env.PORT || 4200;
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json());
 

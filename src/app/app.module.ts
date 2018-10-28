@@ -27,6 +27,7 @@ import { TvThumbnailComponent } from './components/tv/tv-thumbnail.component';
 import { TvDetailComponent } from './components/tv/tv-detail.component';
 import { TvShowTreeComponent } from './components/tv/tv-show-tree.component';
 import { TvResolverService } from './components/tv/tv-resolver.service';
+import { TvDetailResolverService } from './components/tv/tv-detail-resolver.service';
 
 const appRoutes: Routes = [
   {
@@ -59,7 +60,7 @@ const appRoutes: Routes = [
   },
   {
     path: 'tvdetails/:id',
-    // resolve: { movies: MovieResolverService },
+    resolve: { tvshow: TvDetailResolverService },
     component: TvDetailComponent,
     data: { title: 'TV Details' },
     canActivate: [AuthGuardService]

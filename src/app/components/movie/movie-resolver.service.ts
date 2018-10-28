@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class MovieResolverService implements Resolve<any> {
-  resolve(route: ActivatedRouteSnapshot): Observable<any> {
+  resolve(): Observable<any> {
     return this.movieService.getMovies().map(movies => movies);
   }
 

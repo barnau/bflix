@@ -7,13 +7,13 @@
     [mode]="(isHandset$ | async) ? 'over' : 'side'"
     [opened]="!(isHandset$ | async) && auth.isAuthorized()">
     <!-- <mat-toolbar color="primary">Categories</mat-toolbar> -->
-    <mat-toolbar color="primary">
+    <mat-toolbar class="category-btn-group" color="primary">
         <mat-button-toggle-group #selectedMedium="matButtonToggleGroup" value="movie">
             <mat-button-toggle value="movie" [routerLink]="['movies', genres[genres.all]]">
-              MOVIES
+             <div> Movies</div>
             </mat-button-toggle>
             <mat-button-toggle value="tv" [routerLink]="['tv', genres[genres.all]]">
-              TV
+                <div >TV</div>
             </mat-button-toggle>
             
           </mat-button-toggle-group>

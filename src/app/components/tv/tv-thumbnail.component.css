@@ -1,6 +1,8 @@
 .tv-card {
-    width: 348px;
-    margin-left: 60px;
+    width: 335px;
+    height: 470px;
+    border-radius: 5px;
+    text-shadow: 6px 6px 12px #000000;
   }
   
   .tv-poster{
@@ -8,10 +10,15 @@
     width: 280px;
     margin: 0  auto;
     border: 4px solid #a52652;
+    border-radius: 5px;
   }
   
   .synopsis {
     font-size:12px;
+  }
+
+  .shadow {
+    text-shadow: 6px 6px 12px #000000;
   }
   
   mat-card-header {

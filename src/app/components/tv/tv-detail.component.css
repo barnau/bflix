@@ -1,14 +1,31 @@
 
+
 .tv-detail-card {
-  max-width: 400px;
-  width: 400px;
+  margin: 58px auto 48px auto;
+  max-width: 800px;
+  border-radius: 5px;
+  /* width: 800px; */
 }
 
-.example-header-image {
+/* .example-header-image {
   background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
   background-size: cover;
+} */
+
+.title-font {
+  
+  margin: 0 auto;
 }
 
-.horizontal-poster {
+.my-card-title {
+  text-align: center;
+  font-style: italic;
+  font-size: 48px;
+  text-shadow: 6px 6px 12px #000000;
+  color: #E0E0E0;
+  margin: 0 auto;
+}
 
+mat-card-header {
+  text-align: center;
 }

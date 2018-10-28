@@ -18,7 +18,7 @@ export class TvService {
   }
 
   getTvShow(id: string) {
-    debugger;
+    
     let httpOptions = this.auth.getHttpOptions();
     let url = CommonValues.devApi + '/tvshow/' + id;
     return this.http.get(url, httpOptions);

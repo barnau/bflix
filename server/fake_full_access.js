@@ -111,8 +111,9 @@ var saveCallback = (err) => {
 TvShow.findOne({title: "The Affair"}, (err, tvshow) => {
   if(err) console.log(err)
   else {
-   tvshow.posterLocation = "https://image.ibb.co/nF7Uqq/theaffair.jpg";
-   tvshow.horizontalPosterLocation = "https://image.ibb.co/hByO6V/the-affair-poster-cropped.jpg"
+  //  tvshow.posterLocation = "https://image.ibb.co/nF7Uqq/theaffair.jpg";
+  //  tvshow.horizontalPosterLocation = "https://image.ibb.co/hByO6V/the-affair-poster-cropped.jpg"
+      tvshow.synopsis = "Get ready for some serious drama, ladies";
    tvshow.save(saveCallback);
   }
 })
