@@ -5,7 +5,7 @@
     fixedInViewport="true"
     [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
     [mode]="(isHandset$ | async) ? 'over' : 'side'"
-    [opened]="!(isHandset$ | async) && auth.isAuthorized()">
+    [opened]="!(isHandset$ | async) && auth.isAuthenticated()">
     <!-- <mat-toolbar color="primary">Categories</mat-toolbar> -->
     <mat-toolbar class="category-btn-group" color="primary">
         <mat-button-toggle-group #selectedMedium="matButtonToggleGroup" value="movie">

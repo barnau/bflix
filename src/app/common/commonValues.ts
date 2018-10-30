@@ -1,7 +1,7 @@
 
 
 export const CommonValues: any = {
-    devApi: 'http://localhost:4200/api',
+    devApi: 'http://68.111.177.177:4200/api',
     localStorageLoggedInUser: 'loggedInUser'
 }
 

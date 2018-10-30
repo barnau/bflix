@@ -35,7 +35,7 @@ const port = process.env.PORT || 4200;
 //     done(null, profile);
 //   }));
 
-app.set('view engine', 'html');
+//app.set('view engine', 'html');
 
 app.use(logger('dev'));
 app.use(bodyParser.json());
@@ -55,7 +55,7 @@ app.use(passport.session());
 //     done(null, user)
 // });
 
-app.use('/movies', express.static(__dirname + '/dist/bflix'));
+//app.use('/movies', express.static(__dirname + '/dist/bflix'));
 app.use('/api', api);
 //app.use('/users', users);
 //app.use('/auth', auth);

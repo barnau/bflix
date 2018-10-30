@@ -6,6 +6,8 @@ var express = require('express'),
 var passport = require('passport');
 var session = require('express-session');
 var mongoose = require('./server/config/connection');
+var http = require('http');
+var cors = require('cors')
 
 
 //var db = mongoose.connect('mongodb://localhost/bookAPI', {useNewUrlParser: true})
@@ -19,19 +21,31 @@ var app = express();
 var port = process.env.PORT || 4200;
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json());
+app.use(express.static(__dirname + '/dist/bflix'));
 
-app.use(function(req, res, next) {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "Origin, Authorization, X-Requested-With, Content-Type, Accept");
-    next();
-  });
+
+
+// app.use(function(req, res, next) {
+//     res.header("Access-Control-Allow-Origin", "*");
+//     res.header("Access-Control-Allow-Headers", "Origin, Authorization, X-Requested-With, Content-Type, Accept");
+//     next();
+//   });
+
+  app.use(cors({credentials: true, origin: true}));
+
+  //app.set('view engine', 'jade');
 
 app.use(session({secret: 'anything'})); // passport set up; npm install express-session
 
 app.use(passport.initialize()) // passport set up
 app.use(passport.session());
 
-app.use('/api', api);
+//app.use('/api', express.static(__dirname + '/dist/bflix'));
+app.use('/api', api); 
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '/dist/bflix'));
+});
 
 app.get('/', (req, res) => {
     res.send('welcome to my api!');
@@ -51,9 +65,15 @@ app.use(function(err, req, res, next) {
 
   // render the error page
   res.status(err.status || 500);
-  res.render('error');
+  res.send('error');
 });
 
-app.listen(port, () => {
-    console.log('Gulp is running my app on PORT: ' + port)
+const server = http.createServer(app);
+
+// app.listen(port, () => {
+//     console.log('Gulp is running my app on PORT: ' + port)
+// });
+
+server.listen(port, () => {
+  console.log('Gulp is running my app on PORT: ' + port)
 });

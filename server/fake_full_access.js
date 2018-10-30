@@ -108,15 +108,15 @@ var saveCallback = (err) => {
 
 
 
-TvShow.findOne({title: "The Affair"}, (err, tvshow) => {
-  if(err) console.log(err)
-  else {
-  //  tvshow.posterLocation = "https://image.ibb.co/nF7Uqq/theaffair.jpg";
-  //  tvshow.horizontalPosterLocation = "https://image.ibb.co/hByO6V/the-affair-poster-cropped.jpg"
-      tvshow.synopsis = "Get ready for some serious drama, ladies";
-   tvshow.save(saveCallback);
-  }
-})
+// TvShow.findOne({title: "The Affair"}, (err, tvshow) => {
+//   if(err) console.log(err)
+//   else {
+//   //  tvshow.posterLocation = "https://image.ibb.co/nF7Uqq/theaffair.jpg";
+//   //  tvshow.horizontalPosterLocation = "https://image.ibb.co/hByO6V/the-affair-poster-cropped.jpg"
+//       tvshow.synopsis = "Get ready for some serious drama, ladies";
+//    tvshow.save(saveCallback);
+//   }
+// })
 
   // var admin = User({
   //     username: 'admin',
@@ -192,14 +192,16 @@ TvShow.findOne({title: "The Affair"}, (err, tvshow) => {
 //     }
 // });
 
-  // Movie.findOne({title: "The Conjuring"}, (err, movie) => {
-  //   if(err) {
-  //     console.log(err);
-  //   } else {
-  //     console.log('Movie found. Updating: ' + movie);
-  //     movie.location = '/src/assets/movies/solo/solo.mp4'
-  //   }
-  // })
+  Movie.findOne({title: "Solo"}, (err, movie) => {
+    if(err) {
+      console.log(err);
+    } else {
+      console.log('Movie found. Updating: ' + movie);
+      movie.location = '/assets/movies/solo/solo.mp4'
+
+      movie.save(saveCallback);
+    }
+  })
 
 // ADD A MOVIE
   // var theconjuring = Movie({
