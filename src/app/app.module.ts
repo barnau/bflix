@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule, Routes } from '@angular/router';
 
@@ -13,7 +13,7 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MyNavComponent } from './components/my-nav/my-nav.component';
 import { LayoutModule } from '@angular/cdk/layout';
-import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule, MatCardModule, MatMenuModule, MatGridListModule, MatButtonToggleModule, MatTreeModule } from '@angular/material';
+import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule, MatCardModule, MatMenuModule, MatGridListModule, MatButtonToggleModule, MatTreeModule, MatFormFieldModule, MatInputModule, MatAutocompleteModule } from '@angular/material';
 import { LoginComponent } from './components/login/login.component';
 import { SignupComponent } from './components/signup/signup.component';
 import { MovieListComponent } from './components/movie/movie-list.component';
@@ -28,6 +28,8 @@ import { TvDetailComponent } from './components/tv/tv-detail.component';
 import { TvShowTreeComponent } from './components/tv/tv-show-tree.component';
 import { TvResolverService } from './components/tv/tv-resolver.service';
 import { TvDetailResolverService } from './components/tv/tv-detail-resolver.service';
+import { AutocompleteComponent } from './components/autocomplete/autocomplete.component';
+import { DisplayAutocompleteMoviesComponent } from './components/display-autocomplete/display-autocomplete.component';
 
 const appRoutes: Routes = [
   {
@@ -107,11 +109,14 @@ const appRoutes: Routes = [
     TvListComponent,
     TvThumbnailComponent,
     TvDetailComponent,
-    TvShowTreeComponent
+    TvShowTreeComponent,
+    AutocompleteComponent,
+    DisplayAutocompleteMoviesComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
     RouterModule.forRoot(appRoutes,
     { enableTracing: true}),
@@ -128,6 +133,9 @@ const appRoutes: Routes = [
     MatButtonToggleModule,
     MatButtonModule,
     MatTreeModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatAutocompleteModule,
     VgCoreModule,
     VgControlsModule,
     VgBufferingModule,

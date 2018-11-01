@@ -18,10 +18,10 @@ var cors = require('cors')
 
 var app = express();
 
-var port = process.env.PORT || 4200;
+var port = process.env.PORT || 3001;
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json());
-app.use(express.static(__dirname + '/dist/bflix'));
+// app.use(express.static(__dirname + '/dist/bflix'));
 
 
 
@@ -43,9 +43,9 @@ app.use(passport.session());
 //app.use('/api', express.static(__dirname + '/dist/bflix'));
 app.use('/api', api); 
 
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '/dist/bflix'));
-});
+// app.get('*', (req, res) => {
+//   res.sendFile(path.join(__dirname, '/dist/bflix'));
+// });
 
 app.get('/', (req, res) => {
     res.send('welcome to my api!');
@@ -68,12 +68,12 @@ app.use(function(err, req, res, next) {
   res.send('error');
 });
 
-const server = http.createServer(app);
+//const server = http.createServer(app);
 
-// app.listen(port, () => {
-//     console.log('Gulp is running my app on PORT: ' + port)
-// });
-
-server.listen(port, () => {
-  console.log('Gulp is running my app on PORT: ' + port)
+app.listen(port, () => {
+    console.log('Gulp is running my app on PORT: ' + port)
 });
+
+// server.listen(port, () => {
+//   console.log('Gulp is running my app on PORT: ' + port)
+// });

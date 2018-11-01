@@ -1,4 +1,5 @@
 
+  <app-display-autocomplete-movie (Id)="filterById($event)" [movies]="unfilteredMovies"></app-display-autocomplete-movie>
 <div class="container">
   <mat-grid-list cols="3" rowHeight="500px">
     <mat-grid-tile *ngFor="let movie of movies"><app-movie-thumbnail  [movie]="movie"></app-movie-thumbnail></mat-grid-tile>

@@ -43,6 +43,17 @@ export class MovieListComponent implements OnInit {
     })
   }
 
+  filterById(event) {
+    debugger;
+    if(event === 'all') {
+      this.movies = this.unfilteredMovies;
+    } else {
+      let movie = this.unfilteredMovies.find(movie => movie._id === event);
+      this.movies = [];
+      this.movies.push(movie);
+    }
+  }
+
 
 
 

@@ -25,7 +25,7 @@ var saveCallback = (err) => {
 //   }
 // })
 
-// var tvSHow = new TvShow({
+// var castlerock = new TvShow({
 //   title: "Castle Rock",
 //   synopsis: "After watching the first season I'm not really sure. Maybe the devil. Alternate realities possibly? Still pretty cool. Confusing though.",
 //   posterLocation: "https://image.ibb.co/nF7Uqq/theaffair.jpg",
@@ -36,13 +36,51 @@ var saveCallback = (err) => {
 //       seasonNumber: "Season One",
 //       episodes: [
 //         {
-//           location: exampleVideoLocation,
-//           name: "Episode One"
+//           location: '/assets/tvshows/castlerock/s01/Castle.Rock.S01E01.Severance.mkv',
+//           name: "Severance"
+//         },
+//         {
+//           location: '/assets/tvshows/castlerock/s01/Castle.Rock.S01E02.Habeas.Corpus.mkv',
+//           name: "Habeas Corpus"
+//         },
+//         {
+//           location: '/assets/tvshows/castlerock/s01/Castle.Rock.S01E03.Local.Color.mkv',
+//           name: "Local Color"
+//         },
+//         {
+//           location: '/assets/tvshows/castlerock/s01/Castle.Rock.S01E04.The.Box.mkv',
+//           name: "The Box"
+//         },
+//         {
+//           location: '/assets/tvshows/castlerock/s01/Castle.Rock.S01E05.Harvest.mkv',
+//           name: "Harvest"
+//         },
+//         {
+//           location: '/assets/tvshows/castlerock/s01/Castle.Rock.S01E06.Filter.mkv',
+//           name: "Filter"
+//         },
+//         {
+//           location: '/assets/tvshows/castlerock/s01/Castle.Rock.S01E07.The.Queen.mkv',
+//           name: "The Queen"
+//         },
+//         {
+//           location: '/assets/tvshows/castlerock/s01/Castle.Rock.S01E08.Past.Perfect.mkv',
+//           name: "Past Perfect"
+//         },
+//         {
+//           location: '/assets/tvshows/castlerock/s01/Castle.Rock.S01E09.Henry.Deaver.mkv',
+//           name: "Henry Deaver"
+//         },
+//         {
+//           location: '/assets/tvshows/castlerock/s01/Castle.Rock.S01E10.Romans.mkv',
+//           name: "Romans"
 //         }
 //       ]
 //     }
 //   ]
 // })
+
+// castlerock.save(saveCallback);
 
 // var theaffair = new TvShow({
 //   title: "The Affair",
@@ -108,15 +146,15 @@ var saveCallback = (err) => {
 
 
 
-// TvShow.findOne({title: "The Affair"}, (err, tvshow) => {
-//   if(err) console.log(err)
-//   else {
-//   //  tvshow.posterLocation = "https://image.ibb.co/nF7Uqq/theaffair.jpg";
-//   //  tvshow.horizontalPosterLocation = "https://image.ibb.co/hByO6V/the-affair-poster-cropped.jpg"
-//       tvshow.synopsis = "Get ready for some serious drama, ladies";
-//    tvshow.save(saveCallback);
-//   }
-// })
+TvShow.findOne({title: "Castle Rock"}, (err, tvshow) => {
+  if(err) console.log(err)
+  else {
+   tvshow.posterLocation = "https://image.ibb.co/fBdYiA/castlerock.jpg";
+   tvshow.horizontalPosterLocation = "https://image.ibb.co/ey1ZtA/castle-rock.jpg"
+      // tvshow.synopsis = "Get ready for some serious drama, ladies";
+   tvshow.save(saveCallback);
+  }
+})
 
   // var admin = User({
   //     username: 'admin',
@@ -192,16 +230,31 @@ var saveCallback = (err) => {
 //     }
 // });
 
-  Movie.findOne({title: "Solo"}, (err, movie) => {
-    if(err) {
-      console.log(err);
-    } else {
-      console.log('Movie found. Updating: ' + movie);
-      movie.location = '/assets/movies/solo/solo.mp4'
+  // Movie.findOne({title: "Solo"}, (err, movie) => {
+  //   if(err) {
+  //     console.log(err);
+  //   } else {
+  //     console.log('Movie found. Updating: ' + movie);
+  //     movie.location = '/assets/movies/solo/solo.mp4'
 
-      movie.save(saveCallback);
-    }
-  })
+  //     movie.save(saveCallback);
+  //   }
+  // })
+
+  // TvShow.find({},(err, movies) => {
+  //   if(err) console.log(err);
+  //   else {
+  //     movies.forEach(movie => {
+  //       console.log(movie);
+  //     })
+  //   }
+
+  // })
+
+  // TvShow.findByIdAndDelete('5bd391ee6c8f06118cc7e1fc', (err, tvshow) => {
+  //   if(err) console.log(err)
+  //   else console.log('deleted');
+  // })
 
 // ADD A MOVIE
   // var theconjuring = Movie({
