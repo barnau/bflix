@@ -9,7 +9,7 @@ import { TvService } from 'src/app/services/tv.service';
 export class TvDetailResolverService implements Resolve<any> {
 
   resolve(route: ActivatedRouteSnapshot): Observable<any> {
-    debugger;
+    
     let id = route.params['id'];
     return this.tvService.getTvShow(id).map(tvshow => tvshow);
   }

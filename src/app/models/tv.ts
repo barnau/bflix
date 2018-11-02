@@ -1,5 +1,6 @@
+import { VideoBase } from "./videoBase";
 
-export interface TvShow {
+export class TvShow implements VideoBase {
     _id: string;
     title: string;
     seasons: Season[];

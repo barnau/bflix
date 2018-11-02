@@ -1,8 +1,10 @@
-import {Component, OnInit, Input, EventEmitter, Output} from '@angular/core';
+import {Component, OnInit, Input, EventEmitter, Output, OnDestroy} from '@angular/core';
 import {FormControl} from '@angular/forms';
 import {Observable} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
-import { MovieService } from 'src/app/services/movie.service';
+import { Subscription } from 'rxjs/Subscription';
+import { NavBarService } from 'src/app/services/nav-bar.service';
+import { VideoBase } from 'src/app/models/videoBase';
 
 @Component({
   selector: 'app-display-autocomplete-movie',
@@ -12,23 +14,34 @@ import { MovieService } from 'src/app/services/movie.service';
 export class DisplayAutocompleteMoviesComponent implements OnInit {
 
   searchControl = new FormControl();
-  @Input()
-  movies: any[];
-  @Output()
-  Id = new EventEmitter()
+  movies: VideoBase[];
+  // @Output()
+  // Id = new EventEmitter();
+  id: string;
+  videoArraySubscription: Subscription;
 
   filteredOptions: Observable<any[]>;
 
-  ngOnInit() {
-    console.log(this.movies);
-
-    this.filteredOptions = this.searchControl.valueChanges
+  constructor(private navService: NavBarService) {
+    this.navService.getVideoArray().subscribe(movies => {
+      this.movies = movies.videoBaseArray;
+      this.filteredOptions = this.searchControl.valueChanges
       .pipe(
         startWith<string | any>(''),
         map(value => typeof value === 'string' ? value : value.title),
         map(title => title ? this._filter(title) : this.movies.slice())
       );
+      
+    })
   }
+
+  ngOnInit() {
+    console.log(this.movies);
+    
+  }
+
+  
+
 
   displayFn(video?: any): string | undefined {
     return video ? video.title : undefined;
@@ -41,11 +54,11 @@ export class DisplayAutocompleteMoviesComponent implements OnInit {
   }
 
   onSubmit() {
-    debugger;
+    
     if(this.searchControl.value._id) {
-      this.Id.emit(this.searchControl.value._id)
+      this.navService.sendId(this.searchControl.value._id)
     } else {
-      this.Id.emit('all');
+      this.navService.sendId('all');
     }
   }
 

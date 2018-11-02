@@ -1,8 +1,9 @@
+import { VideoBase } from "./videoBase";
 
-export interface Video {
+export class Movie implements VideoBase {
   _id: string;
-  synopsis: string;
   title: string;
+  synopsis: string;
   director: string;
   posterLocation;
   location: string;
