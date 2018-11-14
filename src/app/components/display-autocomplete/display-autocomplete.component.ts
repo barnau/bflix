@@ -39,7 +39,7 @@ export class DisplayAutocompleteMoviesComponent implements OnInit {
     })
 
     // listen for router event and clear search form value
-    router.events.subscribe((event) => {
+    this.router.events.subscribe((event) => {
       this.searchControl.setValue(undefined);
     })
 
