@@ -30,7 +30,7 @@ import { TvResolverService } from './components/tv/tv-resolver.service';
 import { TvDetailResolverService } from './components/tv/tv-detail-resolver.service';
 import { AutocompleteComponent } from './components/autocomplete/autocomplete.component';
 import { DisplayAutocompleteMoviesComponent } from './components/display-autocomplete/display-autocomplete.component';
-import { UploadMovieComponent } from './components/admin/create-movie/create-movie.component';
+import { CreateMovieComponent } from './components/admin/create-movie/create-movie.component';
 
 const appRoutes: Routes = [
   {
@@ -113,7 +113,7 @@ const appRoutes: Routes = [
     TvShowTreeComponent,
     AutocompleteComponent,
     DisplayAutocompleteMoviesComponent,
-    UploadMovieComponent
+    CreateMovieComponent
   ],
   imports: [
     BrowserModule,
