@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { TvShow } from 'src/app/models/tv';
 import { ActivatedRoute } from '@angular/router';
 import { EMovieGenres } from 'src/app/models/EMovieGenres.enum';
+import { Subscription } from 'rxjs';
+import { NavBarService } from 'src/app/services/nav-bar.service';
 
 @Component({
   selector: 'app-tv-list',
@@ -12,12 +14,21 @@ export class TvListComponent implements OnInit {
   
   tvshows: TvShow[];
   unfilteredTvshows: TvShow[];
+  searchId: string;
+  tvshowIdSubscription: Subscription;
 
-  constructor(private route: ActivatedRoute) {}
+  constructor(private route: ActivatedRoute, private navService: NavBarService) {
+    this.tvshowIdSubscription = this.navService.getId().subscribe(idResult => {
+      this.findById(idResult.id);
+    })
+  }
+
+
 
   ngOnInit() {
     this.unfilteredTvshows = this.route.snapshot.data['tvshows'];
     this.tvshows = this.unfilteredTvshows;
+
     this.route.params.subscribe(params => {
       let genre = params['genre'];
 
@@ -29,62 +40,20 @@ export class TvListComponent implements OnInit {
             .filter((movie: TvShow) => { return EMovieGenres[movie.genre.toLocaleLowerCase()] === EMovieGenres[genre]});
         }
       }
+
+      this.navService.sendVideoArray(this.tvshows);
     })
+  }
+
+  findById(id) {
+    if(id === 'all') {
+      this.tvshows = this.unfilteredTvshows;
+    } else {
+      let tvshow = this.unfilteredTvshows.find(tvshow => tvshow._id === id);
+      this.tvshows = [];
+      this.tvshows.push(tvshow);
+    }
   }
 
 }
 
-// this.tvshows = [
-    //   {
-    //     seasons: [
-    //       {
-    //         seasonNumber: "Season One",
-    //         episodes: [
-    //           {
-    //             location: "tbd",
-    //             name: "Episode One"
-    //           },
-    //           {
-    //             location: "tbd",
-    //             name: "Episode Two"
-    //           },
-    //           {
-    //             location: "tbd",
-    //             name: "Episode Three"
-    //           }
-    //         ]
-    //       }
-    //     ],
-    //     synopsis: "Some whore sleeps around or something",
-    //     title: "The Affair",
-    //     posterLocation: "https://image.ibb.co/fBdYiA/castlerock.jpg",
-    //     horizontalPosterLocation: "tbd",
-    //     genre: 'drama'
-    //   },
-    //   {
-    //     seasons: [
-    //       {
-    //         seasonNumber: "Season One",
-    //         episodes: [
-    //           {
-    //             location: "tbd",
-    //             name: "Episode One"
-    //           },
-    //           {
-    //             location: "tbd",
-    //             name: "Episode Two"
-    //           },
-    //           {
-    //             location: "tbd",
-    //             name: "Episode Three"
-    //           }
-    //         ]
-    //       }
-    //     ],
-    //     synopsis: "After watching the first season I'm not really sure. Maybe the devil. Alternate realities possibly? Still pretty cool. Confusing though.",
-    //     title: "Castle Rock",
-    //     posterLocation: "https://image.ibb.co/nF7Uqq/theaffair.jpg",
-    //     horizontalPosterLocation: "tbd",
-    //     genre: 'horror'
-    //   }
-    // ];

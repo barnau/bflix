@@ -5,6 +5,7 @@ import {map, startWith} from 'rxjs/operators';
 import { Subscription } from 'rxjs/Subscription';
 import { NavBarService } from 'src/app/services/nav-bar.service';
 import { VideoBase } from 'src/app/models/videoBase';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-display-autocomplete-movie',
@@ -22,7 +23,11 @@ export class DisplayAutocompleteMoviesComponent implements OnInit {
 
   filteredOptions: Observable<any[]>;
 
-  constructor(private navService: NavBarService) {
+  constructor(
+    private navService: NavBarService,
+    private router: Router) {
+
+    //receive video array from tv or movie list component
     this.navService.getVideoArray().subscribe(movies => {
       this.movies = movies.videoBaseArray;
       this.filteredOptions = this.searchControl.valueChanges
@@ -31,8 +36,14 @@ export class DisplayAutocompleteMoviesComponent implements OnInit {
         map(value => typeof value === 'string' ? value : value.title),
         map(title => title ? this._filter(title) : this.movies.slice())
       );
-      
     })
+
+    // listen for router event and clear search form value
+    router.events.subscribe((event) => {
+      this.searchControl.setValue(undefined);
+    })
+
+
   }
 
   ngOnInit() {

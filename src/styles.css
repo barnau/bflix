@@ -10,6 +10,9 @@ html, body {
     flex: 1 1 auto;
 }
 
+.half-fill-remaining-space {
+  flex: 0 1 auto;
+}
 
 
 

@@ -146,15 +146,15 @@ var saveCallback = (err) => {
 
 
 
-TvShow.findOne({title: "Castle Rock"}, (err, tvshow) => {
-  if(err) console.log(err)
-  else {
-   tvshow.posterLocation = "https://image.ibb.co/fBdYiA/castlerock.jpg";
-   tvshow.horizontalPosterLocation = "https://image.ibb.co/ey1ZtA/castle-rock.jpg"
-      // tvshow.synopsis = "Get ready for some serious drama, ladies";
-   tvshow.save(saveCallback);
-  }
-})
+// TvShow.findOne({title: "Castle Rock"}, (err, tvshow) => {
+//   if(err) console.log(err)
+//   else {
+//    tvshow.posterLocation = "https://image.ibb.co/fBdYiA/castlerock.jpg";
+//    tvshow.horizontalPosterLocation = "https://image.ibb.co/ey1ZtA/castle-rock.jpg"
+//       // tvshow.synopsis = "Get ready for some serious drama, ladies";
+//    tvshow.save(saveCallback);
+//   }
+// })
 
   // var admin = User({
   //     username: 'admin',
@@ -211,24 +211,6 @@ TvShow.findOne({title: "Castle Rock"}, (err, tvshow) => {
 
   // MOVIES
 
-//   var MovieSchema = new Schema({
-//     location: {
-//         type: String,
-//         required: true
-//     },
-//     title: {
-//         type: String,
-//         required: true
-//     },
-//     director: {
-//         type: String,
-//         required: true
-//     },
-//     posterLocation: {
-//         type: String,
-//         required: true
-//     }
-// });
 
   // Movie.findOne({title: "Solo"}, (err, movie) => {
   //   if(err) {
@@ -251,10 +233,7 @@ TvShow.findOne({title: "Castle Rock"}, (err, tvshow) => {
 
   // })
 
-  // TvShow.findByIdAndDelete('5bd391ee6c8f06118cc7e1fc', (err, tvshow) => {
-  //   if(err) console.log(err)
-  //   else console.log('deleted');
-  // })
+ 
 
 // ADD A MOVIE
   // var theconjuring = Movie({
@@ -298,13 +277,70 @@ TvShow.findOne({title: "Castle Rock"}, (err, tvshow) => {
   //   genre: 'scifi'
   // })
 
-  // solo.save(err => {
-  //   if (err)
+  //   var mandy = Movie({
+  //   location: "/assets/movies/mandy/mandy.mp4",
+  //   title: "Mandy",
+  //   director: "Panos Cosmatos",
+  //   posterLocation: "https://image.ibb.co/e1xra0/mandy.jpg",
+  //   synopsis: "Stylish revenge film. Think John Carpenter meets Fear and Loathing",
+  //   genre: 'action'
+  // })
+
+  // mandy.save(saveCallback);
+
+  var theequalizer2 = Movie({
+    location: "/assets/movies/theequalizer2/theequalizer2.mp4",
+    title: "The Equalizer 2",
+    director: "Antoine Fuqua",
+    posterLocation: "https://image.ibb.co/gsBfs0/theequalizer2.jpg",
+    synopsis: "Robert McCall serves an unflinching justice for the exploited and oppressed, but how far will he go when that is someone he loves?",
+    genre: 'action'
+  })
+
+  theequalizer2.save(saveCallback);
+  
+  // missionimpossible.save(err => {
+  //   if(err)
   //     console.log(err)
   //   else
   //     console.log('saved solo')
   // })
 
+  // var thenun = Movie({
+  //   location: "/assets/movies/thenun/thenun.avi",
+  //   title: "The Nun",
+  //   director: "Corin Hardy",
+  //   posterLocation: "https://image.ibb.co/kZppXf/thenun.jpg",
+  //   synopsis: "Satanic nun! Sounds horrifying!",
+  //   genre: 'horror'
+  // });
+
+  // var crazyrichasians = Movie({
+  //   location: "/assets/movies/crazyrichasians/crazyrichasians.avi",
+  //   title: "Crazy Rich Asians",
+  //   director: "Jon M. Chu",
+  //   posterLocation: "https://image.ibb.co/bTn9AA/crazyrichasians.jpg",
+  //   synopsis: "This contemporary romantic comedy, based on a global bestseller, follows native New Yorker Rachel Chu to Singapore to meet her boyfriend's family.",
+  //   genre: 'Comedy'
+  // });
+  
+  // crazyrichasians.save(saveCallback);
+
+  // var icanonlyimagine = Movie({
+  //   location: "/assets/movies/icanonlyimagine/icanonlyimagine.mp4",
+  //   title: "I Can Only Imagine",
+  //   director: "Andrew Erwin",
+  //   posterLocation: "https://image.ibb.co/fOg83V/icanonlyimagine.jpg",
+  //   synopsis: "The inspiring and unknown true story behind MercyMe's beloved, chart topping song that brings ultimate hope to so many is a gripping reminder of the power of true forgiveness.",
+  //   genre: 'Drama'
+  // });
+
+  // icanonlyimagine.save(saveCallback);
+
+
+
+
+  
   // newMovie.save((err) => {
   //   if(err) {
   //     console.log('there was an error saving this movie.')

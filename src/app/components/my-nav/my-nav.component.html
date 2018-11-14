@@ -47,8 +47,8 @@
       <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
     </button>
     <span>BFLIX</span>
-    <span class="fill-remaining-space"></span>
-    <app-display-autocomplete-movie ></app-display-autocomplete-movie>
+    <app-display-autocomplete-movie *ngIf="auth.isAuthenticated()"></app-display-autocomplete-movie>
+    <span class="half-fill-remaining-space"></span>
     <button mat-button *ngIf="auth.isAuthenticated()" [matMenuTriggerFor]="menu"><mat-icon>account_circle</mat-icon></button>
     <mat-menu #menu="matMenu">
       <button mat-menu-item>Item 1</button>

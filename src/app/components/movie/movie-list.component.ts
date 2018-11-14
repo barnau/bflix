@@ -25,12 +25,9 @@ export class MovieListComponent implements OnInit {
     private route: ActivatedRoute,
     private navService: NavBarService) { 
       this.movieIdSubscription = this.navService.getId().subscribe(idResult => {
-        
         this.findById(idResult.id);
       })
     }
-
-
 
   logout() {
     localStorage.removeItem('jwtToken');
@@ -42,12 +39,15 @@ export class MovieListComponent implements OnInit {
     this.movies = this.unfilteredMovies;
 
     this.route.params.subscribe(params => {
+      debugger;
       let genre = params['genre'];
 
       if(genre) {
         if(genre !== 'all') {
           this.movies = this.unfilteredMovies
             .filter((movie: Movie) => { return EMovieGenres[movie.genre.toLocaleLowerCase()] === EMovieGenres[genre]});
+        } else {
+          this.movies = this.unfilteredMovies;
         }
       }
       

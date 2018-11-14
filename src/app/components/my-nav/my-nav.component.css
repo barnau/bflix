@@ -15,4 +15,8 @@ mat-toolbar {
   font-size: 14px;
 }
 
+app-display-autocomplete-movie {
+  margin: 0 auto;
+}
+
 
