@@ -1,4 +1,4 @@
-import {Component, OnInit, Input, EventEmitter, Output, OnDestroy} from '@angular/core';
+import {Component, OnInit, Input, EventEmitter, Output, OnDestroy, ChangeDetectionStrategy, ChangeDetectorRef} from '@angular/core';
 import {FormControl} from '@angular/forms';
 import {Observable} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
@@ -8,6 +8,7 @@ import { VideoBase } from 'src/app/models/videoBase';
 import { Router } from '@angular/router';
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-display-autocomplete-movie',
   templateUrl: './display-autocomplete.component.html',
   styleUrls: ['./display-autocomplete.component.css']
@@ -15,20 +16,26 @@ import { Router } from '@angular/router';
 export class DisplayAutocompleteMoviesComponent implements OnInit {
 
   searchControl = new FormControl();
-  movies: VideoBase[];
+  public movies: VideoBase[];
   // @Output()
   // Id = new EventEmitter();
   id: string;
   videoArraySubscription: Subscription;
+  public hideThis: boolean = true;
 
   filteredOptions: Observable<any[]>;
 
   constructor(
     private navService: NavBarService,
-    private router: Router) {
+    private router: Router,
+    private cdr: ChangeDetectorRef) {
 
     //receive video array from tv or movie list component
     this.navService.getVideoArray().subscribe(movies => {
+      if(!movies) return;
+      debugger;
+      this.hideThis = false;
+      this.cdr.detectChanges();
       this.movies = movies.videoBaseArray;
       this.filteredOptions = this.searchControl.valueChanges
       .pipe(
@@ -40,6 +47,7 @@ export class DisplayAutocompleteMoviesComponent implements OnInit {
 
     // listen for router event and clear search form value
     this.router.events.subscribe((event) => {
+      this.hideThis = true;
       this.searchControl.setValue(undefined);
     })
 
@@ -50,8 +58,6 @@ export class DisplayAutocompleteMoviesComponent implements OnInit {
     console.log(this.movies);
     
   }
-
-  
 
 
   displayFn(video?: any): string | undefined {

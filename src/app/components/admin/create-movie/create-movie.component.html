@@ -1,3 +1,99 @@
-<p>
-  create-movie works!
-</p>
+
+<mat-card class="create-movie-container">
+  <mat-card-header>
+    <mat-card-title>{{editOrAdd}} a Movie</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <mat-vertical-stepper [linear]="false" #stepper>
+      <mat-step [stepControl]="movieTitleFormGroup">
+        <form [formGroup]="movieTitleFormGroup">
+          <ng-template matStepLabel>Title</ng-template>
+          <mat-form-field>
+            <input matInput placeholder="Title" formControlName="movieTitleFormControl" required>
+          </mat-form-field>
+          <div>
+            <button mat-button matStepperNext>Next</button>
+          </div>
+        </form>
+      </mat-step>
+      <mat-step [stepControl]="extensionFormGroup">
+        <form [formGroup]="extensionFormGroup" #locationForm="ngForm">
+          <ng-template matStepLabel>File Extension</ng-template>
+          <mat-form-field>
+            <input matInput placeholder="File Extension" formControlName="extensionCtrl" required>
+          </mat-form-field>
+          <div>
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-button matStepperNext>Next</button>
+          </div>
+        </form>
+      </mat-step>
+      <mat-step [stepControl]="directorFormGroup">
+          <form [formGroup]="directorFormGroup" >
+            <ng-template matStepLabel>Director</ng-template>
+            <mat-form-field>
+              <input matInput placeholder="Director" formControlName="directorCtrl" required>
+            </mat-form-field>
+            <div>
+              <button mat-button matStepperPrevious>Back</button>
+              <button mat-button matStepperNext>Next</button>
+            </div>
+          </form>
+      </mat-step>
+      <mat-step [stepControl]="synopsisFormGroup">
+          <form [formGroup]="synopsisFormGroup" >
+            <ng-template matStepLabel>Synopsis</ng-template>
+            <mat-form-field >
+              <textarea matInput placeholder="Synopsis" formControlName="synopsisCtrl"  required></textarea>
+            </mat-form-field>
+            <div>
+              <button mat-button matStepperPrevious>Back</button>
+              <button mat-button matStepperNext>Next</button>
+            </div>
+          </form>
+      </mat-step>
+      <mat-step [stepControl]="genreFormGroup">
+          <form [formGroup]="genreFormGroup">
+            <ng-template matStepLabel>Genre</ng-template>
+            <mat-form-field>
+              <input matInput placeholder="Genre" formControlName="genreCtrl" [matAutocomplete]="auto" required>
+              <mat-autocomplete #auto="matAutocomplete">
+                <mat-option *ngFor="let genre of genres" [value]="genre">
+                  {{genre}}
+                </mat-option>
+              </mat-autocomplete>
+            </mat-form-field>
+            <div>
+              <button mat-button matStepperPrevious>Back</button>
+              <button mat-button matStepperNext>Next</button>
+            </div>
+          </form>
+      </mat-step>
+      <mat-step [stepControl]="posterFormGroup">
+          <form [formGroup]="posterFormGroup" required>
+            <ng-template matStepLabel>Poster</ng-template>
+            <mat-form-field>
+              <input matInput placeholder="Poster" formControlName="posterCtrl"  >
+              <!-- <button mat-button onclick="document.getElementById('fileToUpload').click()">Upload</button> -->
+            </mat-form-field>
+            <div>
+              <!-- <button mat-button onclick="document.getElementById('fileToUpload').click()">Upload</button> -->
+              <!-- <button type="button" mat-raised-button (click)="openUploadDialog()">Upload</button> -->
+              <!-- <app-test-dialog></app-test-dialog> -->
+              <button mat-button (click)="openUploadDialog()">Upload</button>
+              
+            </div>
+          </form>
+        </mat-step>
+        <mat-step>
+          <ng-template matStepLabel>Done</ng-template>
+          You are now done.
+          <div>
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-button (click)="stepper.reset()">Reset</button>
+            <button mat-button (click)="submit()">Submit</button>
+          </div>
+      </mat-step>
+    </mat-vertical-stepper>
+  </mat-card-content>
+</mat-card>

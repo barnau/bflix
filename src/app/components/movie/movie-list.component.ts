@@ -39,7 +39,7 @@ export class MovieListComponent implements OnInit {
     this.movies = this.unfilteredMovies;
 
     this.route.params.subscribe(params => {
-      debugger;
+      
       let genre = params['genre'];
 
       if(genre) {

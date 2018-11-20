@@ -3,17 +3,17 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule, Routes } from '@angular/router';
-
+import { FlexLayoutModule} from '@angular/flex-layout'
 import { VgCoreModule } from 'videogular2/core';
 import { VgControlsModule } from 'videogular2/controls';
-import {VgOverlayPlayModule} from 'videogular2/overlay-play';
-import {VgBufferingModule} from 'videogular2/buffering';
+import { VgOverlayPlayModule} from 'videogular2/overlay-play';
+import { VgBufferingModule } from 'videogular2/buffering';
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MyNavComponent } from './components/my-nav/my-nav.component';
 import { LayoutModule } from '@angular/cdk/layout';
-import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule, MatCardModule, MatMenuModule, MatGridListModule, MatButtonToggleModule, MatTreeModule, MatFormFieldModule, MatInputModule, MatAutocompleteModule } from '@angular/material';
+import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule, MatCardModule, MatMenuModule, MatGridListModule, MatButtonToggleModule, MatTreeModule, MatFormFieldModule, MatInputModule, MatAutocompleteModule, MatStepperModule, MatDialogModule, MatProgressBarModule, MatProgressSpinnerModule } from '@angular/material';
 import { LoginComponent } from './components/login/login.component';
 import { SignupComponent } from './components/signup/signup.component';
 import { MovieListComponent } from './components/movie/movie-list.component';
@@ -31,6 +31,11 @@ import { TvDetailResolverService } from './components/tv/tv-detail-resolver.serv
 import { AutocompleteComponent } from './components/autocomplete/autocomplete.component';
 import { DisplayAutocompleteMoviesComponent } from './components/display-autocomplete/display-autocomplete.component';
 import { CreateMovieComponent } from './components/admin/create-movie/create-movie.component';
+import { imageUploadDialogComponent } from './components/shared/upload/dialog/dialog.component';
+
+import { FileSelectDirective } from 'ng2-file-upload';
+import { CommonModule } from '@angular/common';
+import { ToastrModule } from 'ngx-toastr';
 
 const appRoutes: Routes = [
   {
@@ -79,6 +84,11 @@ const appRoutes: Routes = [
     data: { title: 'Sign Up' }
   },
   {
+    path: 'createmovie',
+    component: CreateMovieComponent,
+    data: { title: 'Create Movie' }
+  },
+  {
     path: 'norights',
     component: NoRightsComponent
   },
@@ -113,11 +123,15 @@ const appRoutes: Routes = [
     TvShowTreeComponent,
     AutocompleteComponent,
     DisplayAutocompleteMoviesComponent,
-    CreateMovieComponent
+    CreateMovieComponent,
+    imageUploadDialogComponent,
+    FileSelectDirective,
   ],
   imports: [
+    CommonModule,
     BrowserModule,
     FormsModule,
+    FlexLayoutModule,
     ReactiveFormsModule,
     HttpClientModule,
     RouterModule.forRoot(appRoutes,
@@ -127,6 +141,8 @@ const appRoutes: Routes = [
     MatToolbarModule,
     MatButtonModule,
     MatSidenavModule,
+    MatDialogModule,
+    MatProgressBarModule,
     MatIconModule,
     MatListModule,
     MatCardModule,
@@ -137,12 +153,16 @@ const appRoutes: Routes = [
     MatTreeModule,
     MatFormFieldModule,
     MatInputModule,
+    MatProgressSpinnerModule,
     MatAutocompleteModule,
+    MatStepperModule,
     VgCoreModule,
     VgControlsModule,
     VgBufferingModule,
-    VgOverlayPlayModule
+    VgOverlayPlayModule,
+    ToastrModule.forRoot()
   ],
+  entryComponents: [imageUploadDialogComponent],
   providers: [MovieResolverService],
   bootstrap: [AppComponent]
 })

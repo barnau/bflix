@@ -1,13 +1,31 @@
-var mongoose = require('mongoose');
-var passport = require('passport');
-var config = require('../config/database');
+const mongoose = require('mongoose');
+const passport = require('passport');
+const config = require('../config/database');
 require('../config/passport')(passport);
-var express = require('express');
-var jwt = require('jsonwebtoken');
-var router = express.Router();
-var User = require("../models/user");
-var Movie = require("../models/movie");
-var TvShow = require("../models/tvshow");
+const express = require('express');
+const jwt = require('jsonwebtoken');
+const router = express.Router();
+const User = require('../models/user');
+const Movie = require('../models/movie');
+const TvShow = require('../models/tvshow');
+//const upload = require('./upload')
+const Image = require('../models/image');
+const path = require('path');
+const multer = require('multer');
+
+const DIR = './src/assets/images/'
+let storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, DIR);
+  },
+  filename: (req, file, cb) => {
+    cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
+  }
+});
+let upload = multer({storage: storage});
+
+//var upload = multer({storage: storage}).single('photo');
+
 
 /* GET home page. */
 router.get('/', (req, res, next) => {
@@ -61,31 +79,9 @@ router.post('/signup', function(req, res) {
     });
   });
 
-  // ADD MOVIE
-  router.post('/movie', passport.authenticate('jwt', { session: false}), function(req, res) {
-    var token = getToken(req.headers);
-    if (token) {
-      console.log(req.body);
-      var newMovie = new Movie({
-        isbn: req.body.isbn,
-        title: req.body.title,
-        author: req.body.author,
-        publisher: req.body.publisher
-      });
+  
 
-      newMovie.save(function(err) {
-        if (err) {
-          return res.json({success: false, msg: 'Save movie failed.'});
-        }
-        res.json({success: true, msg: 'Successful created new movie.'});
-      });
-    } else {
-      console.log('no token attached to request')
-      return res.status(403).send({success: false, msg: 'Unauthorized.'});
-    }
-  });
-
-  // GET ALL MOVIES
+  // GET ALL MOVIES 
   router.get('/movie', passport.authenticate('jwt', { session: false}), function(req, res) {
     console.log(req)
     console.log(req.headers)
@@ -103,10 +99,38 @@ router.post('/signup', function(req, res) {
     }
   });
 
-  // MIDDLE WEAR AUTO ATTACH MOVIE
-  router.use('/player/:movieId',(req, res, next) => {
-    console.log('player middle wear hit. id: ' + req.params.movieId)
-    Movie.findById(req.params.movieId, (err, movie) => {
+  // ADD A MOVIE
+  router.post('/movie', passport.authenticate('jwt', { session: false}), (req, res) => {
+    var token = getToken(req.headers);
+    if (token) {
+      var newMovie = new Movie({
+        location: req.body.location,
+        title: req.body.title,
+        director: req.body.director,
+        posterLocation: req.body.posterLocation,
+        synopsis: req.body.synopsis,
+        genre: req.body.genre
+      });
+
+      newMovie.save(function(err) {
+        if (err) {
+          console.log('save failed');
+          console.log(err);
+          return res.json({success: false, msg: 'Save movie failed.'});
+        }
+        console.log('save succeeded')
+        res.json({success: true, msg: 'Successful created new movie.'});
+      });
+    } else {
+      console.log('no token attached to request')
+      return res.status(403).send({success: false, msg: 'Unauthorized.'});
+    }
+  });
+
+  // MIDDLE WEAR ATTACH MOVIE
+  router.use('/movie/:id',(req, res, next) => {
+    console.log('editmovie middle wear hit. id: ' + req.params.id)
+    Movie.findById(req.params.id, (err, movie) => {
       if (err) {
         console.log(err)
         res.status(500).send(err);
@@ -115,24 +139,42 @@ router.post('/signup', function(req, res) {
         req.movie = movie;
         next();
       } else {
-        res.status(404).send('moive not found');
+        res.status(404).send('movie not found');
       }
     })
   })
 
-  
-
-  // add video id parameter and implement socket
-  router.get('/player/:movieId', passport.authenticate('jwt', { session: false}), function(req, res) {
+  // EDIT MOVIE
+  router.put('/movie/:id', passport.authenticate('jwt', { session: false}), (req, res) => {
     var token = getToken(req.headers);
 
     if (token) {
       console.log(req.movie);
+      console.log("---------------------------");
+      console.log(req.body);
+
+      req.movie.location = req.body.location;
+      req.movie.title = req.body.title;
+      req.movie.director = req.body.director;
+      req.movie.posterLocation = req.body.posterLocation;
+      req.movie.synopsis = req.body.synopsis;
+      req.movie.genre = req.body.genre;
+
+      console.log(req.movie)
+      req.movie.save((err) => {
+        if(err) console.log(err)
+        else {
+          console.log('Updated movie')
+          return res.status(200).send({success: true, msg: 'Updated movie.'})
+        }
+      })
     } else {
       console.log('no token attached to request')
       return res.status(403).send({success: false, msg: 'Unauthorized.'});
     }
   });
+
+  
 
   //GET ALL TV SHOWS
   router.get('/tvshow', passport.authenticate('jwt', { session: false}), function(req, res) {
@@ -169,7 +211,7 @@ router.post('/signup', function(req, res) {
     })
   })
 
-  // add 
+  // GET TV SHOW BY ID
   router.get('/tvshow/:id', passport.authenticate('jwt', { session: false}), function(req, res) {
     var token = getToken(req.headers);
 
@@ -181,6 +223,34 @@ router.post('/signup', function(req, res) {
       return res.status(403).send({success: false, msg: 'Unauthorized.'});
     }
   });
+
+  // POST UPLOAD IMAGE
+  // router.post('/upload', passport.authenticate('jwt', { session: false}), upload )
+  router.post('/upload', upload.single('photo'), (req, res, next) => {
+    console.log('upload route hit')
+    if (!req.file) {
+      console.log("No file received");
+      return res.send({
+        success: false
+      });
+  
+    } else {
+      console.log('file received');
+      var srcPath = "/" + req.file.path.replace(/\\/g,"/");
+      console.log(srcPath);
+      return res.send({
+        success: true,
+        imgPath: srcPath
+      })
+    }
+  });
+
+
+ 
+
+  
+
+
 
   getToken = function (headers) {
     if (headers && headers.authorization) {

@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
       <div mat-card-avatar class="example-header-image"></div>
       <mat-card-title><h4>Contact this guy for full access <div class="badge"> <span class="glyphicon glyphicon-hand-down"></span></div></h4></mat-card-title>
     </mat-card-header>
-    <img mat-card-image src="/src/assets/blaine.jpg" alt="Photo Me">
+    <img mat-card-image src="assets/blaine.jpg" alt="Photo Me">
    
   </mat-card>
   `,

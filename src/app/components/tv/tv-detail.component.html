@@ -2,7 +2,8 @@
   <mat-card-header>
     <div class="my-card-title"> {{tvshow.title}}</div>
   </mat-card-header>
-  <img class="horizontal-poster" mat-card-image [src]="tvshow.horizontalPosterLocation" alt="Photo of a Shiba Inu">
+  <!-- <img class="horizontal-poster" mat-card-image [src]="tvshow.horizontalPosterLocation"> -->
+  <img class="horizontal-poster" mat-card-image src="/src/assets/images/photo-1542739935795.jpg">
   <mat-card-content>
     <app-tv-show-tree [seasons]="tvshow.seasons"></app-tv-show-tree>
   </mat-card-content>

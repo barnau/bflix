@@ -16,7 +16,7 @@ var MovieSchema = new Schema({
     },
     posterLocation: {
         type: String,
-        required: true
+        required: false
     },
     synopsis: {
       type: String,

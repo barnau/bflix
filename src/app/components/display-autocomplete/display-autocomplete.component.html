@@ -1,4 +1,5 @@
-<form (ngSubmit)="onSubmit()" class="example-form">
+<div [hidden]="hideThis">
+<form (ngSubmit)="onSubmit()" class="example-form" >
     <mat-form-field class="example-full-width">
       <input type="text" placeholder="Search" aria-label="Search" matInput [formControl]="searchControl" [matAutocomplete]="auto">
       <mat-icon matSuffix>search</mat-icon>
@@ -9,3 +10,4 @@
       </mat-autocomplete>
     </mat-form-field>
   </form>
+</div>
