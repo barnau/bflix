@@ -1,0 +1,15 @@
+<div class="filename-container">
+    <mat-spinner [hidden]="hideSpinner"></mat-spinner>
+  <img *ngIf="imagePath" [src]="imagePath">
+  <mat-form-field>
+    <input [(ngModel)]="fileName" matInput placeholder="Selected Image">
+  </mat-form-field>
+</div>
+<button mat-button (click)="openImageInput()">Add Image</button> 
+<button mat-button type="button" 
+  (click)="upload()" 
+  [disabled]="!uploader.getNotUploadedItems().length">
+  Submit
+</button>
+<button mat-button (click)="exit()">Exit</button> 
+<input #imageInput [(ngModel)]="selectedImage" (ngModelChange)="onImageChange($event)" type="file" name="photo" ng2FileSelect [uploader]="uploader" style="display:none"/>

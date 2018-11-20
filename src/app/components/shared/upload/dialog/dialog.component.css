@@ -1,0 +1,17 @@
+
+
+  .filename-container {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .example-container > * {
+    width: 100%;
+  }
+
+  img {
+    margin: 10px auto;
+    width:160px;
+    border: 2px solid #a52652;
+    border-radius: 5px;
+  }
